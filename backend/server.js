@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import Blogpost from './models/blogpost.js';
 
 const app = express();
 
@@ -18,5 +19,22 @@ db.once('open', () => {
 
 dotenv.config();
 const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('index');
+});
+
+app.get('/blog', async (req, res) => {
+  res.json(await Blogpost.find());
+});
+
+app.post('/blog/new', async (req, res) => {
+  const { title, content } = req.body;
+  const blogpostDoc = await Blogpost.create({
+    title,
+    content,
+  });
+  res.json(blogpostDoc);
+});
 
 app.listen(port, () => console.log(`listening ${port}`));
