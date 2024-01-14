@@ -1,8 +1,11 @@
+import './HomePage.css'
+import Gallery from '../assets/gallery.webp'
+
 const HomePage = () => {
   return (
-    <>
-      <h1>Homepage</h1>
-    </>
+    <div className='gallery-image'>
+      <img src={Gallery} />
+    </div>
   )
 }
 

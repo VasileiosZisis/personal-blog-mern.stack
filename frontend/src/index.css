@@ -2,6 +2,8 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --white-bg: #e9ecef;
+  --black-text: #212529;
 }
 
 * {
@@ -19,8 +21,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   overflow-x: hidden;
+  background-color: var(--white-bg);
 }
 
-h1 {
+h1,
+h2 {
   font-family: 'Merriweather', serif;
 }
