@@ -36,11 +36,11 @@ nav a.active::after {
   width: 100%;
 }
 
-hr {
+.navbar-hr {
   display: block;
   margin: auto;
   background-color: var(--black-text);
-  width: clamp(min(770px), calc(100vw - 10%), max(1000px));
+  width: clamp(min(545px), calc(100vw - 10%), max(1000px));
   height: 2px;
 }
 
@@ -106,8 +106,8 @@ hr {
 
 /* MOBILE */
 
-@media only screen and (max-width: 50em) {
-  hr {
+@media only screen and (max-width: 37.5em) {
+  .navbar-hr {
     display: none;
   }
 
@@ -165,7 +165,7 @@ hr {
   transform: translateY(-15px) rotate(-45deg);
 }
 
-@media only screen and (max-width: 50em) {
+@media only screen and (max-width: 37.5em) {
   .hamburger {
     display: block;
   }

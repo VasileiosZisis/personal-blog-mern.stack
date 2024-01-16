@@ -35,7 +35,7 @@ const Navbar = () => {
           </button>
         </div>
         <div>
-          <hr />
+          <hr className='navbar-hr' />
           <ul className={`nav-ul ${toggleOpen ? 'show' : ''}`}>
             <li className='nav-li'>
               <NavLink className='navlink' to='/about' onClick={toggle}>
@@ -68,7 +68,7 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <hr />
+          <hr className='navbar-hr' />
         </div>
       </nav>
     </header>
