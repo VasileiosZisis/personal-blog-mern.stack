@@ -5,6 +5,8 @@
   --white-bg: #e9ecef;
   --black-text: #212529;
   --grey-light: #d9d9d9;
+  --grey-text: #343a40;
+  --grey-dark: #495057;
 }
 
 * {
