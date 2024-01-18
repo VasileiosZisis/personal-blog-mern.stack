@@ -2,6 +2,7 @@ import './HomePage.css'
 import Gallery from '../assets/gallery.webp'
 import Game from '../assets/ar6dy.png'
 import Book from '../assets/true.jpg'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   return (
@@ -52,25 +53,52 @@ const HomePage = () => {
       </section>
       <section className='section-latest'>
         <h2 className='latest-h2'>Latest</h2>
-        <article className='article-container'>
-          <div className='article-img-container'>
-            <img className='article-img' src={Game} />
-          </div>
-          <div className='article-text-container'>
-            <h1>Death Stranding Surprised Me</h1>
-            <time datetime='2001-05-15T19:00'>May 15</time>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum
-              dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna
-            </p>
-          </div>
-        </article>
+        <div className='article-section'>
+          <Link className='article-container'>
+            <div className='article-img-container'>
+              <img className='article-img' src={Game} />
+            </div>
+            <div className='article-text-container'>
+              <h1>Death Stranding Surprised Me</h1>
+              <time dateTime='2001-05-15T19:00'>May 15</time>
+              <p className='article-p'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna
+              </p>
+              <hr className='article-link-hr' />
+              <p className='article-link'>READ MORE</p>
+              <hr className='article-link-hr' />
+            </div>
+          </Link>
+          <Link className='article-container'>
+            <div className='article-img-container'>
+              <img className='article-img' src={Book} />
+            </div>
+            <div className='article-text-container'>
+              <h1>Death Stranding Surprised Me</h1>
+              <time dateTime='2001-05-15T19:00'>May 15</time>
+              <p className='article-p'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna
+              </p>
+              <hr className='article-link-hr' />
+              <p className='article-link'>READ MORE</p>
+              <hr className='article-link-hr' />
+            </div>
+          </Link>
+        </div>
       </section>
     </main>
   )
