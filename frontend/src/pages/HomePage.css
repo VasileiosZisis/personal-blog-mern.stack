@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.swiper {
+  margin-top: 2rem;
+  width: clamp(min(250px), calc(100vw - 10%), max(1000px));
+}
+
 .currently-h2,
 .latest-h2 {
   margin-block: 3rem;
@@ -43,9 +48,13 @@
 }
 
 .currently-card {
-  width: 350px;
-  height: 350px;
+  width: 100%;
+  height: 300px;
   background-color: var(--grey-light);
+}
+
+.currently-card > * {
+  margin-top: 0.3rem;
 }
 
 .card-title {
@@ -62,19 +71,14 @@
 .card-hr {
   background-color: var(--black-text);
   height: 2px;
-  margin-inline: 1rem;
-}
-
-.card-img-container {
-  height: 290px;
-  width: 350px;
+  margin-inline: 2rem;
 }
 
 .card-img {
   display: block;
-  margin: 2rem auto;
-  max-width: 310px;
-  max-height: 220px;
+  margin: 1rem auto;
+  max-width: 230px;
+  max-height: 180px;
   box-shadow: 9px 9px 4px var(--grey-text);
 }
 
