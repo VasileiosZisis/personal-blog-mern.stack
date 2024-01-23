@@ -8,7 +8,7 @@ nav {
   text-align: center;
 }
 
-nav a.active::after {
+/* nav a.active::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -16,7 +16,7 @@ nav a.active::after {
   left: 0%;
   bottom: 0;
   background-color: var(--white-bg);
-}
+} */
 
 .nav-img-div {
   display: flex;
