@@ -26,8 +26,18 @@ const HomePage = () => {
             }}
             spaceBetween={20}
             loop={true}
-            slidesPerView={3}
+            slidesPerView={1}
             navigation={true}
+            breakpoints={{
+              700: {
+                slidesPerView: 2,
+                spaceBetween: 20
+              },
+              1000: {
+                slidesPerView: 3,
+                spaceBetween: 20
+              }
+            }}
             modules={[Autoplay, Navigation]}
           >
             <SwiperSlide>
@@ -35,9 +45,7 @@ const HomePage = () => {
                 <p className='card-title'>Playing</p>
                 <p className='card-subtitle'>Doom Eternal</p>
                 <hr className='card-hr' />
-                <div>
-                  <img className='card-img' src={Game} />
-                </div>
+                <img className='card-img' src={Game} />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -45,9 +53,7 @@ const HomePage = () => {
                 <p className='card-title'>Playing</p>
                 <p className='card-subtitle'>Doom Eternal</p>
                 <hr className='card-hr' />
-                <div>
-                  <img className='card-img' src={Game} />
-                </div>
+                <img className='card-img' src={Game} />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -55,9 +61,7 @@ const HomePage = () => {
                 <p className='card-title'>Reading</p>
                 <p className='card-subtitle'>True Believer</p>
                 <hr className='card-hr' />
-                <div>
-                  <img className='card-img' src={Book} />
-                </div>
+                <img className='card-img' src={Book} />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -65,9 +69,7 @@ const HomePage = () => {
                 <p className='card-title'>Reading</p>
                 <p className='card-subtitle'>True Believer</p>
                 <hr className='card-hr' />
-                <div>
-                  <img className='card-img' src={Book} />
-                </div>
+                <img className='card-img' src={Book} />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -75,9 +77,7 @@ const HomePage = () => {
                 <p className='card-title'>Reading</p>
                 <p className='card-subtitle'>True Believer</p>
                 <hr className='card-hr' />
-                <div>
-                  <img className='card-img' src={Book} />
-                </div>
+                <img className='card-img' src={Book} />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -85,9 +85,7 @@ const HomePage = () => {
                 <p className='card-title'>Playing</p>
                 <p className='card-subtitle'>Doom Eternal</p>
                 <hr className='card-hr' />
-                <div>
-                  <img className='card-img' src={Game} />
-                </div>
+                <img className='card-img' src={Game} />
               </div>
             </SwiperSlide>
           </Swiper>
