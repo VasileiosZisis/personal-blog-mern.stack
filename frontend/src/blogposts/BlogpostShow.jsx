@@ -8,7 +8,7 @@ const BlogpostShow = ({ title, content }) => {
       <img className='blogpost-img' src={Game} />
       <h1 className='blogpost-h1'>Death Stranding Surprised Me</h1>
       <h2 className='blogpost-h2'>and I know it shouldn't</h2>
-      <time className='blogpost-time' datetime='2021-10-02'>
+      <time className='blogpost-time' dateTime='2021-10-02'>
         2021-10-02
       </time>
       <hr className='blogpost-hr' />

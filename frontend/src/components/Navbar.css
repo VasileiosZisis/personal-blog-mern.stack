@@ -106,7 +106,7 @@ nav {
 
 /* MOBILE */
 
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 600px) {
   .navbar-hr {
     display: none;
   }
@@ -165,7 +165,7 @@ nav {
   transform: translateY(-15px) rotate(-45deg);
 }
 
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 600px) {
   .hamburger {
     display: block;
   }

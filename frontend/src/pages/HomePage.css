@@ -124,7 +124,7 @@
 
 /* MOBILE */
 
-@media only screen and (max-width: 50em) {
+@media only screen and (max-width: 800px) {
   .currently-h2 {
     font-size: 1.9rem;
   }
@@ -136,7 +136,7 @@
   }
 }
 
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 600px) {
   .gallery-image {
     margin: 0 1rem 1rem 1rem;
   }
