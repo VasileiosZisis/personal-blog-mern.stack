@@ -3,8 +3,8 @@ const { Schema, model } = mongoose;
 
 const BlogpostSchema = new Schema(
   {
-    title: String,
-    post: String,
+    title: { type: String, required: true },
+    content: { type: String, required: true },
   },
   { timestamps: true }
 );

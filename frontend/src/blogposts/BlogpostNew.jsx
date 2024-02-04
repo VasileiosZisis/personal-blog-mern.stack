@@ -1,5 +1,6 @@
 import './BlogpostNew.css'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 
@@ -13,28 +14,39 @@ const schema = Joi.object({
 })
 
 const BlogpostNew = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({ resolver: joiResolver(schema) })
 
-  console.log(errors)
+  const onFormSubmit = async data => {
+    try {
+      const response = await fetch('http://localhost:3000/blog/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      const responseData = await response.json()
+      console.log(responseData)
+      // navigate('/')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <main className='form-container'>
-      <form
-        className='form'
-        onSubmit={handleSubmit(data => {
-          console.log(data)
-        })}
-      >
-        <label className='label' htmlFor='title'>
+      <form className='form' onSubmit={handleSubmit(onFormSubmit)}>
+        <label className='label' htmlFor='title' name='title'>
           Title
         </label>
         <input type='text' {...register('title')} />
         <p>{errors.title?.message}</p>
-        <label className='label' htmlFor='content'>
+        <label className='label' htmlFor='content' name='content'>
           Content
         </label>
         <textarea rows='10' cols='100' type='text' {...register('content')} />
