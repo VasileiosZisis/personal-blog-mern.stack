@@ -13,7 +13,10 @@ const BlogPage = () => {
   }, [])
 
   return (
-    <>{posts.length > 0 && posts.map(post => <BlogpostShow {...post} />)}</>
+    <>
+      {posts.length > 0 &&
+        posts.map(post => <BlogpostShow key={post._id} {...post} />)}
+    </>
   )
 }
 

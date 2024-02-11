@@ -8,9 +8,15 @@ const schema = Joi.object({
   title: Joi.string()
     .required()
     .messages({ 'string.empty': 'This field is required' }),
+  subtitle: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
   content: Joi.string()
     .required()
-    .messages({ 'string.empty': 'This field is required' })
+    .messages({ 'string.empty': 'This field is required' }),
+  category: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'Choose an option' })
 })
 
 const BlogpostNew = () => {
@@ -22,6 +28,7 @@ const BlogpostNew = () => {
   } = useForm({ resolver: joiResolver(schema) })
 
   const onFormSubmit = async data => {
+    console.log(data)
     try {
       const response = await fetch('http://localhost:3000/blog/new', {
         method: 'POST',
@@ -45,12 +52,25 @@ const BlogpostNew = () => {
           Title
         </label>
         <input type='text' {...register('title')} />
+        <label className='label' htmlFor='subtitle' name='subtitle'>
+          Subtitle
+        </label>
+        <input type='text' {...register('subtitle')} />
         <p>{errors.title?.message}</p>
         <label className='label' htmlFor='content' name='content'>
           Content
         </label>
         <textarea rows='10' cols='100' type='text' {...register('content')} />
         <p>{errors.content?.message}</p>
+        <label htmlFor='category'>Choose a category:</label>
+        <select name='category' {...register('category')}>
+          <option value='' name=''></option>
+          <option value='game'>Game</option>
+          <option value='tv'>TV</option>
+          <option value='anime'>Anime</option>
+          <option value='book'>Book</option>
+        </select>
+        <p>{errors.category?.message}</p>
         <button className='form-button' type='submit'>
           Submit
         </button>

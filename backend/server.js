@@ -30,10 +30,12 @@ app.get('/blog', async (req, res) => {
 });
 
 app.post('/blog/new', async (req, res) => {
-  const { title, content } = req.body;
+  const { title, subtitle, content, category } = req.body;
   const blogpostDoc = await Blogpost.create({
     title,
+    subtitle,
     content,
+    category,
   });
   res.json(blogpostDoc);
 });
