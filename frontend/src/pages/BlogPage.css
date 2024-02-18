@@ -1,0 +1,13 @@
+.section-blogpost {
+  margin-top: 2rem;
+  display: grid;
+  place-items: center;
+}
+
+.blogpost-card-container {
+  width: clamp(min(250px), calc(100vw - 10%), max(1000px));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}

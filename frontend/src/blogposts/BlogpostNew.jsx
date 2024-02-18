@@ -51,11 +51,11 @@ const BlogpostNew = () => {
         <label className='label' htmlFor='title' name='title'>
           Title
         </label>
-        <input type='text' {...register('title')} />
+        <input className='input' type='text' {...register('title')} />
         <label className='label' htmlFor='subtitle' name='subtitle'>
           Subtitle
         </label>
-        <input type='text' {...register('subtitle')} />
+        <input className='input' type='text' {...register('subtitle')} />
         <p>{errors.title?.message}</p>
         <label className='label' htmlFor='content' name='content'>
           Content
@@ -63,7 +63,7 @@ const BlogpostNew = () => {
         <textarea rows='10' cols='100' type='text' {...register('content')} />
         <p>{errors.content?.message}</p>
         <label htmlFor='category'>Choose a category:</label>
-        <select name='category' {...register('category')}>
+        <select className='select' name='category' {...register('category')}>
           <option value='' name=''></option>
           <option value='game'>Game</option>
           <option value='tv'>TV</option>

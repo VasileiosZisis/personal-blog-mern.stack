@@ -10,15 +10,15 @@ import App from './App.jsx'
 import HomePage from './pages/HomePage.jsx'
 import BlogPage from './pages/BlogPage.jsx'
 import BlogpostNew from './blogposts/BlogpostNew.jsx'
-import BlogpostShow from './blogposts/BlogpostShow.jsx'
+import BlogPostPage from './pages/BlogPostPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index path='/' element={<HomePage />} />
-      <Route path='blog' element={<BlogPage />} />
+      <Route path='blog/' element={<BlogPage />} />
       <Route path='blog/new' element={<BlogpostNew />} />
-      <Route path='blog/show' element={<BlogpostShow />} />
+      <Route path='blog/:id' element={<BlogPostPage />} />
     </Route>
   )
 )

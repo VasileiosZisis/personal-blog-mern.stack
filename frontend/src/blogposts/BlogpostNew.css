@@ -18,6 +18,15 @@
   font-size: 1.4rem;
 }
 
+.input {
+  padding: 2px;
+}
+
+.select {
+  background-color: #ffff;
+  padding: 5px;
+}
+
 .form-button {
   padding-block: 0.6rem;
   padding-inline: 1.2rem;

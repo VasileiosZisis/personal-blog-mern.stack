@@ -1,8 +1,8 @@
-article {
+.article {
   text-align: center;
 }
 
-.blogpost-img {
+.article-img {
   max-width: clamp(min(250px), calc(100vw - 10%), max(1000px));
   max-height: 400px;
   object-fit: cover;
@@ -10,24 +10,24 @@ article {
   box-shadow: 9px 9px 4px var(--grey-medium);
 }
 
-.blogpost-h1 {
+.article-h1 {
   color: var(--black-text);
   font-size: 4rem;
 }
 
-.blogpost-h2 {
+.article-h2 {
   font-size: 3rem;
   font-weight: 400;
   color: var(--black-text);
 }
 
-.blogpost-time {
+.article-time {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--grey-text);
 }
 
-.blogpost-hr {
+.article-hr {
   display: block;
   margin: 1rem auto;
   background-color: var(--black-text);
@@ -35,7 +35,7 @@ article {
   height: 2px;
 }
 
-.blogpost-p {
+.article-p {
   color: var(--black-text);
   font-size: 1.1rem;
   margin: 2rem 14rem;
