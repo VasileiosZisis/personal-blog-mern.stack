@@ -4,6 +4,7 @@ import 'dotenv/config';
 dotenv.config();
 import connectDB from './config/db.js';
 import postRoutes from './routes/postRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const port = process.env.PORT;
 
@@ -18,5 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/blog', postRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => console.log(`listening ${port}`));
