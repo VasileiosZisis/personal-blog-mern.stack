@@ -18,8 +18,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index path='/' element={<HomePage />} />
+      <Route path='/new' element={<BlogpostNew />} />
       <Route path='blog/' element={<BlogPage />} />
-      <Route path='blog/new' element={<BlogpostNew />} />
       <Route path='blog/:id' element={<BlogPostPage />} />
     </Route>
   )
@@ -27,8 +27,6 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 )

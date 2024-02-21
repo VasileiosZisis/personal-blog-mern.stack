@@ -10,7 +10,7 @@ const BlogPostPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`http://localhost:3000/blog/${postId}`)
+      const { data } = await axios.get(`/blog/${postId}`)
       setPost(data)
     }
     fetchProduct()

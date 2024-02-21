@@ -13,7 +13,7 @@ const BlogPage = () => {
     //   })
     // })
     const fetchPosts = async () => {
-      const { data } = await axios.get('http://localhost:3000/blog/')
+      const { data } = await axios.get('/blog')
       setPosts(data)
     }
     fetchPosts()

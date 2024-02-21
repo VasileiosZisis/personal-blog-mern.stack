@@ -30,7 +30,7 @@ const BlogpostNew = () => {
   const onFormSubmit = async data => {
     console.log(data)
     try {
-      const response = await fetch('http://localhost:3000/blog/new', {
+      const response = await fetch('/blog/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
