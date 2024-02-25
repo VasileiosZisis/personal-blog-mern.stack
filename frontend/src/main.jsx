@@ -12,21 +12,23 @@ import App from './App.jsx'
 import HomePage from './pages/HomePage.jsx'
 import BlogPage from './pages/BlogPage.jsx'
 import BlogpostNew from './blogposts/BlogpostNew.jsx'
-import BlogPostPage from './pages/BlogPostPage.jsx'
+import BlogpostPage from './pages/BlogPostPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index path='/' element={<HomePage />} />
       <Route path='/new' element={<BlogpostNew />} />
-      <Route path='blog/' element={<BlogPage />} />
-      <Route path='blog/:id' element={<BlogPostPage />} />
+      <Route path='/blog/' element={<BlogPage />} />
+      <Route path='/blog/:id' element={<BlogpostPage />} />
     </Route>
   )
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 )

@@ -6,17 +6,6 @@ const getBlogposts = asyncHandler(async (req, res) => {
   res.json(blogpostDocs);
 });
 
-const createBlogpost = asyncHandler(async (req, res) => {
-  const { title, subtitle, content, category } = req.body;
-  const blogpostDoc = await Blogpost.create({
-    title,
-    subtitle,
-    content,
-    category,
-  });
-  res.json(blogpostDoc);
-});
-
 const getBlogpostById = asyncHandler(async (req, res) => {
   const blogpostDoc = await Blogpost.findById(req.params.id);
   if (blogpostDoc) {
@@ -27,4 +16,4 @@ const getBlogpostById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getBlogposts, getBlogpostById, createBlogpost };
+export { getBlogposts, getBlogpostById };

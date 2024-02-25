@@ -1,35 +1,50 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useGetBlogpostDetailsQuery } from '../slices/blogpostsApiSlice'
+// import axios from 'axios'
 import Game from '../assets/ar6dy.png'
-import './BlogPostPage.css'
+import './BlogpostPage.css'
 
-const BlogPostPage = () => {
-  const { id: postId } = useParams()
-  const [post, setPost] = useState({})
+const BlogpostPage = () => {
+  const { id: blogpostId } = useParams()
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/blog/${postId}`)
-      setPost(data)
-    }
-    fetchProduct()
-  }, [postId])
+  const {
+    data: blogpost,
+    isLoading,
+    error
+  } = useGetBlogpostDetailsQuery(blogpostId)
+  // const [post, setPost] = useState({})
 
-  const date = new Date(post.createdAt)
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const { data } = await axios.get(`/blog/${postId}`)
+  //     setPost(data)
+  //   }
+  //   fetchProduct()
+  // }, [postId])
 
-  const newDate = date.toLocaleDateString()
+  // const date = new Date(blogpost.createdAt)
+
+  // const newDate = date.toLocaleDateString()
 
   return (
-    <article className='article'>
-      <img className='article-img' src={Game} />
-      <h1 className='article-h1'>{post.title}</h1>
-      <h2 className='article-h2'>{post.subtitle}</h2>
-      <time className='article-time'>{newDate}</time>
-      <hr className='article-hr' />
-      <p className='article-p'>{post.content}</p>
-    </article>
+    <>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <div>{error?.data?.message || error.error}</div>
+      ) : (
+        <article className='article'>
+          <img className='article-img' src={Game} />
+          <h1 className='article-h1'>{blogpost.title}</h1>
+          <h2 className='article-h2'>{blogpost.subtitle}</h2>
+          <time className='article-time'>{blogpost.createdAt}</time>
+          <hr className='article-hr' />
+          <p className='article-p'>{blogpost.content}</p>
+        </article>
+      )}
+    </>
   )
 }
 
-export default BlogPostPage
+export default BlogpostPage
