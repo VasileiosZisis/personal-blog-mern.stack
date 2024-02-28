@@ -4,6 +4,7 @@ import 'dotenv/config';
 dotenv.config();
 import connectDB from './config/db.js';
 import blogpostRoutes from './routes/blogpostRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const port = process.env.PORT;
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/blogposts', blogpostRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
