@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 dotenv.config();
 import connectDB from './config/db.js';
@@ -13,7 +14,10 @@ connectDB();
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('API is running...');
