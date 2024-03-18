@@ -52,11 +52,12 @@ const BlogpostNew = () => {
           Title
         </label>
         <input className='input' type='text' {...register('title')} />
+        <p>{errors.title?.message}</p>
         <label className='label' htmlFor='subtitle' name='subtitle'>
           Subtitle
         </label>
         <input className='input' type='text' {...register('subtitle')} />
-        <p>{errors.title?.message}</p>
+        <p>{errors.subtitle?.message}</p>
         <label className='label' htmlFor='content' name='content'>
           Content
         </label>
