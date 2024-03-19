@@ -1,4 +1,3 @@
-// import './BlogpostNew.css'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -17,7 +16,7 @@ const schema = Joi.object({
     .required()
     .messages({
       'string.empty': 'This field is required',
-      'string.email': 'Not a valid email'
+      'string.email': 'Not a valid email format'
     }),
   password: Joi.string()
     .required()
@@ -35,12 +34,10 @@ const RegisterPage = () => {
   } = useForm({ resolver: joiResolver(schema) })
 
   const onFormSubmit = async data => {
-    // console.log(data)
     try {
-      const response = await register(data).unwrap()
-      dispatch(setCredentials({ ...response }))
+      await register(data).unwrap()
+      dispatch(setCredentials(data))
       //   navigate('/')
-      console.log(response)
     } catch (err) {
       toast.error(err?.data?.message || err.error)
     }

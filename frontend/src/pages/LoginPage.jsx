@@ -35,9 +35,8 @@ const LoginPage = () => {
   const onFormSubmit = async data => {
     console.log(data)
     try {
-      const response = await login(data).unwrap()
-      dispatch(setCredentials({ ...response }))
-      console.log(response)
+      await login(data).unwrap()
+      dispatch(setCredentials(data))
       //   navigate('/')
     } catch (err) {
       toast.error(err?.data?.message || err.error)
