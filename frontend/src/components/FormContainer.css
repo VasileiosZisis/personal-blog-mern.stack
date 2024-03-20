@@ -1,33 +1,33 @@
 .form-container {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
-.form {
+.form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
 
-.form p {
+.form-container p {
   color: var(--error);
   font-size: 1.1rem;
 }
 
-.label {
+.form-container label {
   font-size: 1.4rem;
 }
 
-.input {
+.form-container input {
   padding: 2px;
 }
 
-.select {
+.form-container select {
   background-color: #ffff;
   padding: 5px;
 }
 
-.form-button {
+.form-container button {
   padding-block: 0.6rem;
   padding-inline: 1.2rem;
   font-size: 1.25rem;

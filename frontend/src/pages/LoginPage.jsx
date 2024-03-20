@@ -1,4 +1,4 @@
-// import './BlogpostNew.css'
+import FormContainer from '../components/FormContainer'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -33,10 +33,9 @@ const LoginPage = () => {
   } = useForm({ resolver: joiResolver(schema) })
 
   const onFormSubmit = async data => {
-    console.log(data)
     try {
-      await login(data).unwrap()
-      dispatch(setCredentials(data))
+      const res = await login(data).unwrap()
+      dispatch(setCredentials(res))
       //   navigate('/')
     } catch (err) {
       toast.error(err?.data?.message || err.error)
@@ -58,23 +57,21 @@ const LoginPage = () => {
   }
 
   return (
-    <main className='form-container'>
-      <form className='form' onSubmit={handleSubmit(onFormSubmit)}>
-        <label className='label' htmlFor='email' name='email'>
+    <FormContainer>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
+        <label htmlFor='email' name='email'>
           Email
         </label>
-        <input className='input' type='email' {...register('email')} />
+        <input type='email' {...register('email')} />
         <p>{errors.email?.message}</p>
-        <label className='label' htmlFor='password' name='password'>
+        <label htmlFor='password' name='password'>
           Password
         </label>
-        <input className='input' type='password' {...register('password')} />
+        <input type='password' {...register('password')} />
         <p>{errors.password?.message}</p>
-        <button className='form-button' type='submit'>
-          Submit
-        </button>
+        <button type='submit'>Submit</button>
       </form>
-    </main>
+    </FormContainer>
   )
 }
 

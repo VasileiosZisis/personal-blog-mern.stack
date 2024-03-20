@@ -25,9 +25,13 @@
 html,
 body {
   font-family: 'Open Sans', sans-serif;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   background-color: var(--white-bg);
+}
+
+main {
+  min-height: 70vh;
 }
 
 h1,

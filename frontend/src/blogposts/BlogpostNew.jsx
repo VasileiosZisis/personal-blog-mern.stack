@@ -1,4 +1,4 @@
-import './BlogpostNew.css'
+import FormContainer from '../components/FormContainer'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -46,37 +46,35 @@ const BlogpostNew = () => {
   }
 
   return (
-    <main className='form-container'>
-      <form className='form' onSubmit={handleSubmit(onFormSubmit)}>
-        <label className='label' htmlFor='title' name='title'>
+    <FormContainer>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
+        <label htmlFor='title' name='title'>
           Title
         </label>
         <input className='input' type='text' {...register('title')} />
         <p>{errors.title?.message}</p>
-        <label className='label' htmlFor='subtitle' name='subtitle'>
+        <label htmlFor='subtitle' name='subtitle'>
           Subtitle
         </label>
         <input className='input' type='text' {...register('subtitle')} />
         <p>{errors.subtitle?.message}</p>
-        <label className='label' htmlFor='content' name='content'>
+        <label htmlFor='content' name='content'>
           Content
         </label>
         <textarea rows='10' cols='100' type='text' {...register('content')} />
         <p>{errors.content?.message}</p>
         <label htmlFor='category'>Choose a category:</label>
-        <select className='select' name='category' {...register('category')}>
-          <option value='' name=''></option>
+        <select name='category' {...register('category')}>
+          <option value=''></option>
           <option value='game'>Game</option>
           <option value='tv'>TV</option>
           <option value='anime'>Anime</option>
           <option value='book'>Book</option>
         </select>
         <p>{errors.category?.message}</p>
-        <button className='form-button' type='submit'>
-          Submit
-        </button>
+        <button type='submit'>Submit</button>
       </form>
-    </main>
+    </FormContainer>
   )
 }
 

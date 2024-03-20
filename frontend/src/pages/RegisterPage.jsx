@@ -1,3 +1,4 @@
+import FormContainer from '../components/FormContainer'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
@@ -35,8 +36,8 @@ const RegisterPage = () => {
 
   const onFormSubmit = async data => {
     try {
-      await register(data).unwrap()
-      dispatch(setCredentials(data))
+      const res = await register(data).unwrap()
+      dispatch(setCredentials(res))
       //   navigate('/')
     } catch (err) {
       toast.error(err?.data?.message || err.error)
@@ -58,28 +59,26 @@ const RegisterPage = () => {
   }
 
   return (
-    <main className='form-container'>
-      <form className='form' onSubmit={handleSubmit(onFormSubmit)}>
-        <label className='label' htmlFor='nane' name='name'>
+    <FormContainer>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
+        <label htmlFor='nane' name='name'>
           Name
         </label>
-        <input className='input' type='text' {...regForm('name')} />
+        <input type='text' {...regForm('name')} />
         <p>{errors.email?.message}</p>
-        <label className='label' htmlFor='email' name='email'>
+        <label htmlFor='email' name='email'>
           Email
         </label>
-        <input className='input' type='email' {...regForm('email')} />
+        <input type='email' {...regForm('email')} />
         <p>{errors.email?.message}</p>
-        <label className='label' htmlFor='password' name='password'>
+        <label htmlFor='password' name='password'>
           Password
         </label>
-        <input className='input' type='password' {...regForm('password')} />
+        <input type='password' {...regForm('password')} />
         <p>{errors.password?.message}</p>
-        <button className='form-button' type='submit'>
-          Submit
-        </button>
+        <button type='submit'>Submit</button>
       </form>
-    </main>
+    </FormContainer>
   )
 }
 

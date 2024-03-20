@@ -1,0 +1,22 @@
+footer {
+  margin-top: 2rem;
+  padding-block: 0.2rem;
+  background-color: var(--grey-light);
+}
+
+footer ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding-block: 0.2rem;
+}
+
+footer li {
+  font-size: 1.1rem;
+}
+
+footer a {
+  color: var(--black-text);
+}
