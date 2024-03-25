@@ -1,5 +1,6 @@
 import Blogpost from '../components/Blogpost'
 import { useGetBlogpostsQuery } from '../slices/blogpostsApiSlice'
+import { Oval } from 'react-loader-spinner'
 // import { useEffect, useState } from 'react'
 // import axios from 'axios'
 import './BlogPage.css'
@@ -23,9 +24,18 @@ const BlogPage = () => {
   const { data: blogposts, isLoading, error } = useGetBlogpostsQuery()
 
   return (
-    <>
+    <main>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Oval
+          visible={true}
+          height='80'
+          width='80'
+          color='#212529'
+          secondaryColor='#212529'
+          ariaLabel='oval-loading'
+          wrapperStyle={{ display: 'block', margin: 'auto' }}
+          wrapperClass=''
+        />
       ) : error ? (
         <div>{error?.data?.message || error.error}</div>
       ) : (
@@ -38,7 +48,7 @@ const BlogPage = () => {
           </div>
         </section>
       )}
-    </>
+    </main>
   )
 }
 

@@ -30,7 +30,16 @@ const BlogpostPage = () => {
   return (
     <>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Oval
+          visible={true}
+          height='80'
+          width='80'
+          color='#212529'
+          secondaryColor='#212529'
+          ariaLabel='oval-loading'
+          wrapperStyle={{ display: 'block', margin: 'auto' }}
+          wrapperClass=''
+        />
       ) : error ? (
         <div>{error?.data?.message || error.error}</div>
       ) : (

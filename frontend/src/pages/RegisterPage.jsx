@@ -7,6 +7,7 @@ import { useRegisterMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import Joi from 'joi'
 import { toast } from 'react-toastify'
+import { Oval } from 'react-loader-spinner'
 
 const schema = Joi.object({
   name: Joi.string().required().messages({
@@ -26,7 +27,7 @@ const schema = Joi.object({
 
 const RegisterPage = () => {
   const dispatch = useDispatch()
-  const [register] = useRegisterMutation()
+  const [register, { isLoading }] = useRegisterMutation()
   const navigate = useNavigate()
   const {
     register: regForm,
@@ -38,24 +39,11 @@ const RegisterPage = () => {
     try {
       const res = await register(data).unwrap()
       dispatch(setCredentials(res))
-      //   navigate('/')
+      navigate('/')
+      toast.success('You are now registered')
     } catch (err) {
       toast.error(err?.data?.message || err.error)
     }
-    // try {
-    //   const response = await fetch('/register', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(data)
-    //   })
-    //   const responseData = await response.json()
-    //   console.log(responseData)
-    //   navigate('/')
-    // } catch (err) {
-    //   console.log(err)
-    // }
   }
 
   return (
@@ -77,6 +65,18 @@ const RegisterPage = () => {
         <input type='password' {...regForm('password')} />
         <p>{errors.password?.message}</p>
         <button type='submit'>Submit</button>
+        {isLoading && (
+          <Oval
+            visible={true}
+            height='80'
+            width='80'
+            color='#212529'
+            secondaryColor='#212529'
+            ariaLabel='oval-loading'
+            wrapperStyle={{ display: 'block', margin: 'auto' }}
+            wrapperClass=''
+          />
+        )}
       </form>
     </FormContainer>
   )

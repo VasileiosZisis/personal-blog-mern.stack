@@ -2,6 +2,7 @@ import FormContainer from '../components/FormContainer'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
+import { toast } from 'react-toastify'
 import Joi from 'joi'
 
 const schema = Joi.object({
@@ -41,7 +42,7 @@ const BlogpostNew = () => {
       console.log(responseData)
       // navigate('/')
     } catch (err) {
-      console.log(err)
+      toast.error(err?.data?.message || err.error)
     }
   }
 

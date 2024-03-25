@@ -54,7 +54,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user_.id);
+  const user = await User.findById(req.user._id);
   if (user) {
     res.status(200).json({
       _id: user._id,
@@ -69,13 +69,13 @@ const getUserProfile = asyncHandler(async (req, res) => {
 });
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user_.id);
+  const user = await User.findById(req.user._id);
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
-      user.password = req.password;
+      user.password = req.body.password;
     }
     const updatedUser = await user.save();
     res.status(200).json({

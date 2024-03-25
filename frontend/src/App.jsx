@@ -11,7 +11,7 @@ function App () {
       <Navbar />
       <Outlet />
       <Footer />
-      <ToastContainer />
+      <ToastContainer transition:Slide draggable={false} />
     </>
   )
 }

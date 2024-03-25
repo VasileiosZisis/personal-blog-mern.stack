@@ -32,6 +32,8 @@ body {
 
 main {
   min-height: 70vh;
+  display: grid;
+  place-content: center;
 }
 
 h1,
