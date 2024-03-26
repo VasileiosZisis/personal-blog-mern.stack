@@ -15,8 +15,18 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    createBlogpost: builder.mutation({
+      query: (data) => ({
+        url: `${BLOGPOSTS_URL}/new`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetBlogpostsQuery, useGetBlogpostDetailsQuery } =
-  blogpostApiSlice;
+export const {
+  useGetBlogpostsQuery,
+  useGetBlogpostDetailsQuery,
+  useCreateBlogpostMutation,
+} = blogpostApiSlice;

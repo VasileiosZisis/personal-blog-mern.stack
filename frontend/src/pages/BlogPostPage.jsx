@@ -1,9 +1,8 @@
-// import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetBlogpostDetailsQuery } from '../slices/blogpostsApiSlice'
-// import axios from 'axios'
 import Game from '../assets/ar6dy.png'
 import './BlogpostPage.css'
+import Loader from '../components/Loader'
 
 const BlogpostPage = () => {
   const { id: blogpostId } = useParams()
@@ -13,33 +12,11 @@ const BlogpostPage = () => {
     isLoading,
     error
   } = useGetBlogpostDetailsQuery(blogpostId)
-  // const [post, setPost] = useState({})
-
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     const { data } = await axios.get(`/blog/${postId}`)
-  //     setPost(data)
-  //   }
-  //   fetchProduct()
-  // }, [postId])
-
-  // const date = new Date(blogpost.createdAt)
-
-  // const newDate = date.toLocaleDateString()
 
   return (
     <>
       {isLoading ? (
-        <Oval
-          visible={true}
-          height='80'
-          width='80'
-          color='#212529'
-          secondaryColor='#212529'
-          ariaLabel='oval-loading'
-          wrapperStyle={{ display: 'block', margin: 'auto' }}
-          wrapperClass=''
-        />
+        <Loader />
       ) : error ? (
         <div>{error?.data?.message || error.error}</div>
       ) : (

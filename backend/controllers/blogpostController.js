@@ -16,4 +16,10 @@ const getBlogpostById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getBlogposts, getBlogpostById };
+const createBlogpost = asyncHandler(async (req, res) => {
+  const blogpost = new Blogpost(req.body);
+  const createdBlogpost = await blogpost.save();
+  res.status(201).json(createdBlogpost);
+});
+
+export { getBlogposts, getBlogpostById, createBlogpost };

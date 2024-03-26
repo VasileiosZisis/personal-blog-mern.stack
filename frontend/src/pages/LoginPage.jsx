@@ -7,7 +7,7 @@ import { useLoginMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import Joi from 'joi'
 import { toast } from 'react-toastify'
-import { Oval } from 'react-loader-spinner'
+import Loader from '../components/Loader'
 
 const schema = Joi.object({
   email: Joi.string()
@@ -58,18 +58,7 @@ const LoginPage = () => {
         <input type='password' {...register('password')} />
         <p>{errors.password?.message}</p>
         <button type='submit'>Submit</button>
-        {isLoading && (
-          <Oval
-            visible={true}
-            height='80'
-            width='80'
-            color='#212529'
-            secondaryColor='#212529'
-            ariaLabel='oval-loading'
-            wrapperStyle={{ display: 'block', margin: 'auto' }}
-            wrapperClass=''
-          />
-        )}
+        {isLoading && <Loader />}
       </form>
     </FormContainer>
   )
