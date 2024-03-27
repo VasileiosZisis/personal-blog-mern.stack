@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
 import Joi from 'joi'
+import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
+import Loader from '../components/Loader'
 
 const schema = Joi.object({
   title: Joi.string()
@@ -28,19 +30,14 @@ const BlogpostNew = () => {
     formState: { errors }
   } = useForm({ resolver: joiResolver(schema) })
 
+  const [createBlogpost, { isLoading, refetch }] = useCreateBlogpostMutation()
+
   const onFormSubmit = async data => {
-    console.log(data)
     try {
-      const response = await fetch('/new', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const responseData = await response.json()
-      console.log(responseData)
-      // navigate('/')
+      const response = await createBlogpost(data).unwrap()
+      navigate('/blog')
+      toast.success('Blogpost has been created')
+      refetch()
     } catch (err) {
       toast.error(err?.data?.message || err.error)
     }
@@ -74,6 +71,7 @@ const BlogpostNew = () => {
         </select>
         <p>{errors.category?.message}</p>
         <button type='submit'>Submit</button>
+        {isLoading && <Loader />}
       </form>
     </FormContainer>
   )
