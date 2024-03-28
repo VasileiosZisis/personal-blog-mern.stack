@@ -18,6 +18,7 @@ import UpdateProfile from './users/UpdateProfile.jsx'
 import BlogpostPage from './pages/BlogPostPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
+import BlogpostEdit from './blogposts/BlogpostEdit.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
 
       <Route path='' element={<AdminRoute />}>
         <Route path='/new' element={<BlogpostNew />} />
+        <Route path='/blog/:id/edit' element={<BlogpostEdit />} />
       </Route>
     </Route>
   )

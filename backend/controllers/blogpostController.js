@@ -32,7 +32,7 @@ const updateBlogpost = asyncHandler(async (req, res) => {
   const blogpost = await Blogpost.findByIdAndUpdate(id, { ...req.body });
   const updatedBlogpost = await blogpost.save();
   if (updatedBlogpost) {
-    res.json(updatedBlogpost);
+    res.status(200).json(updatedBlogpost);
   } else {
     res.status(404);
     throw new Error('Resouce not found');

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import Joi from 'joi'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { useDispatch, useSelector } from 'react-redux'
-import { Oval } from 'react-loader-spinner'
+import Loader from '../components/Loader'
 import { useProfileMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import { toast } from 'react-toastify'
@@ -68,18 +68,7 @@ const UpdateProfile = () => {
         <input type='password' {...register('password')} />
         <p>{errors.password?.message}</p>
         <button type='submit'>Submit</button>
-        {isLoading && (
-          <Oval
-            visible={true}
-            height='80'
-            width='80'
-            color='#212529'
-            secondaryColor='#212529'
-            ariaLabel='oval-loading'
-            wrapperStyle={{ display: 'block', margin: 'auto' }}
-            wrapperClass=''
-          />
-        )}
+        {isLoading && <Loader />}
       </form>
     </FormContainer>
   )

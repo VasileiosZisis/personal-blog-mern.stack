@@ -7,7 +7,7 @@
 .blogpost-card-container {
   width: clamp(min(250px), calc(100vw - 10%), max(1000px));
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
   gap: 3rem;
 }

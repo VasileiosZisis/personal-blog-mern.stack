@@ -9,8 +9,7 @@ import {
 import checkObjectId from '../middleware/checkObjectId.js';
 import { registered, admin } from '../middleware/authMiddleware.js';
 
-router.route('/').get(getBlogposts);
-router.route('/new').post(registered, admin, createBlogpost);
+router.route('/').get(getBlogposts).post(registered, admin, createBlogpost);
 router
   .route('/:id')
   .get(checkObjectId, getBlogpostById)
