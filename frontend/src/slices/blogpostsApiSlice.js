@@ -7,6 +7,7 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: BLOGPOSTS_URL,
       }),
+      providesTags: ['Blogposts'],
       keepUnusedDataFor: 5,
     }),
     getBlogpostDetails: builder.query({
@@ -25,11 +26,11 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
     }),
     updateBlogpost: builder.mutation({
       query: (data) => ({
-        url: `${BLOGPOSTS_URL}/${data._id}`,
+        url: `${BLOGPOSTS_URL}/${data.blogpostId}`,
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: ['Blogpost'],
+      invalidatesTags: ['Blogposts'],
     }),
   }),
 });

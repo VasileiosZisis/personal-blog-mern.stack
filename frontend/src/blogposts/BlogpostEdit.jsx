@@ -12,6 +12,7 @@ import Loader from '../components/Loader'
 import { useEffect } from 'react'
 
 const schema = Joi.object({
+  blogpostId: Joi.string().hex().length(24),
   title: Joi.string()
     .required()
     .messages({ 'string.empty': 'This field is required' }),
@@ -40,6 +41,7 @@ const BlogpostEdit = () => {
 
   useEffect(() => {
     if (blogpostData) {
+      setValue('blogpostId', blogpostId)
       setValue('title', blogpostData.title)
       setValue('subtitle', blogpostData.subtitle)
       setValue('content', blogpostData.content)
@@ -60,9 +62,9 @@ const BlogpostEdit = () => {
 
   const onFormSubmit = async data => {
     try {
-      const response = await createBlogpost(data).unwrap()
-      navigate('/blog')
-      toast.success('Blogpost has been created')
+      const response = await updateBlogpost(data).unwrap()
+      // navigate('/blog')
+      toast.success('Blogpost has been updated')
       refetch()
     } catch (err) {
       toast.error(err?.data?.message || err.error)
@@ -71,34 +73,41 @@ const BlogpostEdit = () => {
 
   return (
     <FormContainer>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
-        <label htmlFor='title' name='title'>
-          Title
-        </label>
-        <input className='input' type='text' {...register('title')} />
-        <p>{errors.title?.message}</p>
-        <label htmlFor='subtitle' name='subtitle'>
-          Subtitle
-        </label>
-        <input className='input' type='text' {...register('subtitle')} />
-        <p>{errors.subtitle?.message}</p>
-        <label htmlFor='content' name='content'>
-          Content
-        </label>
-        <textarea rows='10' cols='100' type='text' {...register('content')} />
-        <p>{errors.content?.message}</p>
-        <label htmlFor='category'>Choose a category:</label>
-        <select name='category' {...register('category')}>
-          <option value=''></option>
-          <option value='game'>Game</option>
-          <option value='tv'>TV</option>
-          <option value='anime'>Anime</option>
-          <option value='book'>Book</option>
-        </select>
-        <p>{errors.category?.message}</p>
-        <button type='submit'>Submit</button>
-        {isLoading && <Loader />}
-      </form>
+      {loadingUpdate && <Loader />}
+
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <p>{error.data.message}</p>
+      ) : (
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <label htmlFor='title' name='title'>
+            Title
+          </label>
+          <input className='input' type='text' {...register('title')} />
+          <p>{errors.title?.message}</p>
+          <label htmlFor='subtitle' name='subtitle'>
+            Subtitle
+          </label>
+          <input className='input' type='text' {...register('subtitle')} />
+          <p>{errors.subtitle?.message}</p>
+          <label htmlFor='content' name='content'>
+            Content
+          </label>
+          <textarea rows='10' cols='100' type='text' {...register('content')} />
+          <p>{errors.content?.message}</p>
+          <label htmlFor='category'>Choose a category:</label>
+          <select name='category' {...register('category')}>
+            <option value=''></option>
+            <option value='game'>Game</option>
+            <option value='tv'>TV</option>
+            <option value='anime'>Anime</option>
+            <option value='book'>Book</option>
+          </select>
+          <p>{errors.category?.message}</p>
+          <button type='submit'>Submit</button>
+        </form>
+      )}
     </FormContainer>
   )
 }
