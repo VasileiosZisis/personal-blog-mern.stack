@@ -18,6 +18,8 @@ const getBlogpostById = asyncHandler(async (req, res) => {
 
 const createBlogpost = asyncHandler(async (req, res) => {
   const blogpost = new Blogpost(req.body);
+  blogpost.image.url = req.file.path;
+  blogpost.image.filename = req.file.filename;
   const createdBlogpost = await blogpost.save();
   if (createdBlogpost) {
     res.status(201).json(createdBlogpost);

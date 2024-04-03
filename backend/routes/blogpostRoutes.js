@@ -8,8 +8,15 @@ import {
 } from '../controllers/blogpostController.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import { registered, admin } from '../middleware/authMiddleware.js';
+import { storage } from '../config/cloudinary.js';
+import multer from 'multer';
 
-router.route('/').get(getBlogposts).post(registered, admin, createBlogpost);
+const upload = multer({ storage });
+
+router
+  .route('/')
+  .get(getBlogposts)
+  .post(upload.single('image'), registered, admin, createBlogpost);
 router
   .route('/:id')
   .get(checkObjectId, getBlogpostById)

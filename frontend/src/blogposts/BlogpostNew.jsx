@@ -7,20 +7,21 @@ import Joi from 'joi'
 import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 
-const schema = Joi.object({
-  title: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  subtitle: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  content: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  category: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'Choose an option' })
-})
+// const schema = Joi.object({
+//   image: Joi.any().required().messages({ 'any.required': 'No image found' }),
+//   title: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'This field is required' }),
+//   subtitle: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'This field is required' }),
+//   content: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'This field is required' }),
+//   category: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'Choose an option' })
+// })
 
 const BlogpostNew = () => {
   const navigate = useNavigate()
@@ -28,14 +29,24 @@ const BlogpostNew = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm({ resolver: joiResolver(schema) })
+  } = useForm()
 
   const [createBlogpost, { isLoading, refetch }] = useCreateBlogpostMutation()
 
   const onFormSubmit = async data => {
+    const formData = new FormData()
+    formData.append('image', data.image[0])
+    data = { ...data, image: data.image[0].name }
+    formData.append('image', data.image)
+    formData.append('title', data.title)
+    formData.append('subtitle', data.subtitle)
+    formData.append('content', data.content)
+    formData.append('category', data.category)
+    console.log(formData)
     try {
-      const response = await createBlogpost(data).unwrap()
-      navigate('/blog')
+      const response = await createBlogpost(formData).unwrap()
+      console.log(response)
+      // navigate('/blog')
       toast.success('Blogpost has been created')
       refetch()
     } catch (err) {
@@ -46,15 +57,20 @@ const BlogpostNew = () => {
   return (
     <FormContainer>
       <form onSubmit={handleSubmit(onFormSubmit)}>
+        <label htmlFor='image' name='image'>
+          Image
+        </label>
+        <input type='file' {...register('image')} />
+        <p>{errors.image?.message}</p>
         <label htmlFor='title' name='title'>
           Title
         </label>
-        <input className='input' type='text' {...register('title')} />
+        <input type='text' {...register('title')} />
         <p>{errors.title?.message}</p>
         <label htmlFor='subtitle' name='subtitle'>
           Subtitle
         </label>
-        <input className='input' type='text' {...register('subtitle')} />
+        <input type='text' {...register('subtitle')} />
         <p>{errors.subtitle?.message}</p>
         <label htmlFor='content' name='content'>
           Content

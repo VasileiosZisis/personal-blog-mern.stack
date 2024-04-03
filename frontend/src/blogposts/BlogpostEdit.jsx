@@ -42,10 +42,12 @@ const BlogpostEdit = () => {
   useEffect(() => {
     if (blogpostData) {
       setValue('blogpostId', blogpostId)
+      setValue('image', blogpostId.image)
       setValue('title', blogpostData.title)
       setValue('subtitle', blogpostData.subtitle)
       setValue('content', blogpostData.content)
       setValue('category', blogpostData.category)
+      console.log(blogpostData)
     }
   }, [blogpostData])
 
@@ -81,15 +83,20 @@ const BlogpostEdit = () => {
         <p>{error.data.message}</p>
       ) : (
         <form onSubmit={handleSubmit(onFormSubmit)}>
+          <label htmlFor='image' name='image'>
+            Title
+          </label>
+          <input type='file' {...register('image')} />
+          <p>{errors.image?.message}</p>
           <label htmlFor='title' name='title'>
             Title
           </label>
-          <input className='input' type='text' {...register('title')} />
+          <input type='text' {...register('title')} />
           <p>{errors.title?.message}</p>
           <label htmlFor='subtitle' name='subtitle'>
             Subtitle
           </label>
-          <input className='input' type='text' {...register('subtitle')} />
+          <input type='text' {...register('subtitle')} />
           <p>{errors.subtitle?.message}</p>
           <label htmlFor='content' name='content'>
             Content
