@@ -7,21 +7,21 @@ import Joi from 'joi'
 import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 
-// const schema = Joi.object({
-//   image: Joi.any().required().messages({ 'any.required': 'No image found' }),
-//   title: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'This field is required' }),
-//   subtitle: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'This field is required' }),
-//   content: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'This field is required' }),
-//   category: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'Choose an option' })
-// })
+const schema = Joi.object({
+  image: Joi.any().required().messages({ 'any.required': 'Image required' }),
+  title: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
+  subtitle: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
+  content: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
+  category: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'Choose an option' })
+})
 
 const BlogpostNew = () => {
   const navigate = useNavigate()
@@ -29,7 +29,9 @@ const BlogpostNew = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm()
+  } = useForm({
+    resolver: joiResolver(schema)
+  })
 
   const [createBlogpost, { isLoading, refetch }] = useCreateBlogpostMutation()
 
@@ -42,11 +44,9 @@ const BlogpostNew = () => {
     formData.append('subtitle', data.subtitle)
     formData.append('content', data.content)
     formData.append('category', data.category)
-    console.log(formData)
     try {
-      const response = await createBlogpost(formData).unwrap()
-      console.log(response)
-      // navigate('/blog')
+      const response = await createBlogpost(data).unwrap()
+      navigate('/blog')
       toast.success('Blogpost has been created')
       refetch()
     } catch (err) {

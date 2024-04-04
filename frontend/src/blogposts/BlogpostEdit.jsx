@@ -11,38 +11,38 @@ import {
 import Loader from '../components/Loader'
 import { useEffect } from 'react'
 
-const schema = Joi.object({
-  blogpostId: Joi.string().hex().length(24),
-  title: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  subtitle: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  content: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  category: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'Choose an option' })
-})
+// const schema = Joi.object({
+//   _id: Joi.string().hex().length(24),
+//   title: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'This field is required' }),
+//   subtitle: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'This field is required' }),
+//   content: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'This field is required' }),
+//   category: Joi.string()
+//     .required()
+//     .messages({ 'string.empty': 'Choose an option' })
+// })
 const BlogpostEdit = () => {
-  const { id: blogpostId } = useParams()
+  const { id } = useParams()
 
   const {
     data: blogpostData,
     isLoading,
     refetch,
     error
-  } = useGetBlogpostDetailsQuery(blogpostId)
+  } = useGetBlogpostDetailsQuery(id)
 
   const [updateBlogpost, { isLoading: loadingUpdate }] =
     useUpdateBlogpostMutation()
 
   useEffect(() => {
     if (blogpostData) {
-      setValue('blogpostId', blogpostId)
-      setValue('image', blogpostId.image)
+      setValue('_id', id)
+      setValue('image', blogpostData.image)
       setValue('title', blogpostData.title)
       setValue('subtitle', blogpostData.subtitle)
       setValue('content', blogpostData.content)
@@ -56,13 +56,12 @@ const BlogpostEdit = () => {
     setValue,
     handleSubmit,
     formState: { errors }
-  } = useForm({
-    resolver: joiResolver(schema)
-  })
+  } = useForm()
 
   const navigate = useNavigate()
 
   const onFormSubmit = async data => {
+    console.log(data)
     try {
       const response = await updateBlogpost(data).unwrap()
       // navigate('/blog')
@@ -83,11 +82,11 @@ const BlogpostEdit = () => {
         <p>{error.data.message}</p>
       ) : (
         <form onSubmit={handleSubmit(onFormSubmit)}>
-          <label htmlFor='image' name='image'>
-            Title
+          <label htmlFor='_id' name='_id'>
+            id
           </label>
-          <input type='file' {...register('image')} />
-          <p>{errors.image?.message}</p>
+          <input type='text' {...register('_id')} />
+          <p>{errors.blogpostId?.message}</p>
           <label htmlFor='title' name='title'>
             Title
           </label>

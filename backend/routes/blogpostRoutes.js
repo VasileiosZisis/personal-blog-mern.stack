@@ -20,6 +20,6 @@ router
 router
   .route('/:id')
   .get(checkObjectId, getBlogpostById)
-  .put(registered, admin, updateBlogpost);
+  .put(upload.single('image'), registered, admin, updateBlogpost);
 
 export default router;

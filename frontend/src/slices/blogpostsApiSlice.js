@@ -26,7 +26,7 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
     }),
     updateBlogpost: builder.mutation({
       query: (data) => ({
-        url: `${BLOGPOSTS_URL}/${data.blogpostId}`,
+        url: `${BLOGPOSTS_URL}/${data._id}`,
         method: 'PUT',
         body: data,
       }),

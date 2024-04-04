@@ -4,8 +4,8 @@ const { Schema, model } = mongoose;
 const BlogpostSchema = new Schema(
   {
     image: {
-      url: String,
-      filename: String,
+      url: { type: String, required: true },
+      filename: { type: String, required: true },
     },
     title: { type: String, required: true },
     subtitle: { type: String, required: true },
