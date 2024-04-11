@@ -30,10 +30,13 @@ const createBlogpost = asyncHandler(async (req, res) => {
 });
 
 const updateBlogpost = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
   const { id } = req.params;
-  const blogpost = await Blogpost.findByIdAndUpdate(id, { ...req.body });
+  const blogpost = await Blogpost.findById(id);
+  blogpost.title = req.body.title;
+  blogpost.subtitle = req.body.subtitle;
+  blogpost.content = req.body.content;
+  blogpost.category = req.body.category;
+  blogpost.image - req.body.image;
   if (req.file) {
     blogpost.image.url = req.file.path;
     blogpost.image.filename = req.file.filename;

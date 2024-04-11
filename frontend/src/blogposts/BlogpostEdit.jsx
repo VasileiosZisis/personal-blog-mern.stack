@@ -6,7 +6,8 @@ import { toast } from 'react-toastify'
 import Joi from 'joi'
 import {
   useUpdateBlogpostMutation,
-  useGetBlogpostDetailsQuery
+  useGetBlogpostDetailsQuery,
+  useUploadBlogpostMutation
 } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 import { useEffect } from 'react'
@@ -39,15 +40,16 @@ const BlogpostEdit = () => {
   const [updateBlogpost, { isLoading: loadingUpdate }] =
     useUpdateBlogpostMutation()
 
+  const [uploadBlogpost, { isLoading: loadingImageUpdate }] =
+    useUploadBlogpostMutation()
+
   useEffect(() => {
     if (blogpostData) {
-      setValue('_id', id)
       setValue('image', blogpostData.image)
       setValue('title', blogpostData.title)
       setValue('subtitle', blogpostData.subtitle)
       setValue('content', blogpostData.content)
       setValue('category', blogpostData.category)
-      console.log(blogpostData)
     }
   }, [blogpostData])
 
@@ -61,58 +63,86 @@ const BlogpostEdit = () => {
   const navigate = useNavigate()
 
   const onFormSubmit = async data => {
-    console.log(data)
-    try {
-      const response = await updateBlogpost(data).unwrap()
-      // navigate('/blog')
-      toast.success('Blogpost has been updated')
-      refetch()
-    } catch (err) {
-      toast.error(err?.data?.message || err.error)
+    if (data.image[0]) {
+      const formData = new FormData()
+      formData.append('_id', id)
+      formData.append('image', data.image[0])
+      data = { ...data, image: data.image[0].name }
+      formData.append('image', data.image)
+      formData.append('title', data.title)
+      formData.append('subtitle', data.subtitle)
+      formData.append('content', data.content)
+      formData.append('category', data.category)
+      try {
+        await uploadBlogpost(formData).unwrap()
+        // navigate('/blog')
+        toast.success('Blogpost has been updated')
+        refetch()
+      } catch (err) {
+        toast.error(err?.data?.message || err.error)
+      }
+    } else {
+      try {
+        await updateBlogpost({ ...data, _id: id }).unwrap()
+        // navigate('/blog')
+        toast.success('Blogpost has been updated')
+        refetch()
+      } catch (err) {
+        toast.error(err?.data?.message || err.error)
+      }
     }
   }
 
   return (
     <FormContainer>
       {loadingUpdate && <Loader />}
+      {loadingImageUpdate && <Loader />}
 
       {isLoading ? (
         <Loader />
       ) : error ? (
         <p>{error.data.message}</p>
       ) : (
-        <form onSubmit={handleSubmit(onFormSubmit)}>
-          <label htmlFor='_id' name='_id'>
-            id
-          </label>
-          <input type='text' {...register('_id')} />
-          <p>{errors.blogpostId?.message}</p>
-          <label htmlFor='title' name='title'>
-            Title
-          </label>
-          <input type='text' {...register('title')} />
-          <p>{errors.title?.message}</p>
-          <label htmlFor='subtitle' name='subtitle'>
-            Subtitle
-          </label>
-          <input type='text' {...register('subtitle')} />
-          <p>{errors.subtitle?.message}</p>
-          <label htmlFor='content' name='content'>
-            Content
-          </label>
-          <textarea rows='10' cols='100' type='text' {...register('content')} />
-          <p>{errors.content?.message}</p>
-          <label htmlFor='category'>Choose a category:</label>
-          <select name='category' {...register('category')}>
-            <option value=''></option>
-            <option value='game'>Game</option>
-            <option value='tv'>TV</option>
-            <option value='anime'>Anime</option>
-            <option value='book'>Book</option>
-          </select>
-          <p>{errors.category?.message}</p>
-          <button type='submit'>Submit</button>
-        </form>
+        <>
+          <img src={blogpostData.image.url} style={{ width: '150px' }} />
+          <form onSubmit={handleSubmit(onFormSubmit)}>
+            <label htmlFor='image' name='image'>
+              image
+            </label>
+            <input type='file' {...register('image')} />
+            <p>{errors.image?.message}</p>
+            <label htmlFor='title' name='title'>
+              Title
+            </label>
+            <input type='text' {...register('title')} />
+            <p>{errors.title?.message}</p>
+            <label htmlFor='subtitle' name='subtitle'>
+              Subtitle
+            </label>
+            <input type='text' {...register('subtitle')} />
+            <p>{errors.subtitle?.message}</p>
+            <label htmlFor='content' name='content'>
+              Content
+            </label>
+            <textarea
+              rows='10'
+              cols='100'
+              type='text'
+              {...register('content')}
+            />
+            <p>{errors.content?.message}</p>
+            <label htmlFor='category'>Choose a category:</label>
+            <select name='category' {...register('category')}>
+              <option value=''></option>
+              <option value='game'>Game</option>
+              <option value='tv'>TV</option>
+              <option value='anime'>Anime</option>
+              <option value='book'>Book</option>
+            </select>
+            <p>{errors.category?.message}</p>
+            <button type='submit'>Submit</button>
+          </form>
+        </>
       )}
     </FormContainer>
   )

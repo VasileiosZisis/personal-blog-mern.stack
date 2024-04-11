@@ -16,10 +16,10 @@ const upload = multer({ storage });
 router
   .route('/')
   .get(getBlogposts)
-  .post(upload.single('image'), registered, admin, createBlogpost);
+  .post(registered, admin, upload.single('image'), createBlogpost);
 router
   .route('/:id')
   .get(checkObjectId, getBlogpostById)
-  .put(upload.single('image'), registered, admin, updateBlogpost);
+  .put(registered, admin, upload.single('image'), updateBlogpost);
 
 export default router;

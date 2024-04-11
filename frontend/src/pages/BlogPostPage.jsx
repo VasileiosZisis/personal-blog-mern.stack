@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
 import { useGetBlogpostDetailsQuery } from '../slices/blogpostsApiSlice'
-import Game from '../assets/ar6dy.png'
 import './BlogpostPage.css'
 import Loader from '../components/Loader'
 
@@ -21,7 +20,7 @@ const BlogpostPage = () => {
         <div>{error?.data?.message || error.error}</div>
       ) : (
         <article className='article'>
-          <img className='article-img' src={Game} />
+          <img className='article-img' src={blogpost.image.url} />
           <h1 className='article-h1'>{blogpost.title}</h1>
           <h2 className='article-h2'>{blogpost.subtitle}</h2>
           <time className='article-time'>{blogpost.createdAt}</time>

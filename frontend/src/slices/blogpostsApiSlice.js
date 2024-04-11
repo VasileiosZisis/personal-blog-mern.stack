@@ -1,4 +1,4 @@
-import { BLOGPOSTS_URL } from '../constants';
+import { BLOGPOSTS_URL, UPLOAD_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const blogpostApiSlice = apiSlice.injectEndpoints({
@@ -11,8 +11,8 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
     getBlogpostDetails: builder.query({
-      query: (blogpostId) => ({
-        url: `${BLOGPOSTS_URL}/${blogpostId}`,
+      query: (_id) => ({
+        url: `${BLOGPOSTS_URL}/${_id}`,
       }),
       keepUnusedDataFor: 5,
     }),
@@ -32,6 +32,13 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Blogposts'],
     }),
+    uploadBlogpost: builder.mutation({
+      query: (data) => ({
+        url: `${BLOGPOSTS_URL}/${data.get('_id')}`,
+        method: 'PUT',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -40,4 +47,5 @@ export const {
   useGetBlogpostDetailsQuery,
   useCreateBlogpostMutation,
   useUpdateBlogpostMutation,
+  useUploadBlogpostMutation,
 } = blogpostApiSlice;

@@ -45,7 +45,7 @@ const BlogpostNew = () => {
     formData.append('content', data.content)
     formData.append('category', data.category)
     try {
-      const response = await createBlogpost(data).unwrap()
+      await createBlogpost(formData).unwrap()
       navigate('/blog')
       toast.success('Blogpost has been created')
       refetch()
