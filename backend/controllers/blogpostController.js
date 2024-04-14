@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import Blogpost from '../models/blogpost.js';
+import { cloudinary } from '../config/cloudinary.js';
 
 const getBlogposts = asyncHandler(async (req, res) => {
   const blogpostDocs = await Blogpost.find({});
@@ -30,8 +31,7 @@ const createBlogpost = asyncHandler(async (req, res) => {
 });
 
 const updateBlogpost = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const blogpost = await Blogpost.findById(id);
+  const blogpost = await Blogpost.findById(req.params.id);
   blogpost.title = req.body.title;
   blogpost.subtitle = req.body.subtitle;
   blogpost.content = req.body.content;
@@ -50,4 +50,23 @@ const updateBlogpost = asyncHandler(async (req, res) => {
   }
 });
 
-export { getBlogposts, getBlogpostById, createBlogpost, updateBlogpost };
+const deleteBlogpost = asyncHandler(async (req, res) => {
+  const blogpost = await Blogpost.findById(req.params.id);
+
+  if (blogpost) {
+    await cloudinary.uploader.destroy(blogpost.image.filename);
+    await blogpost.deleteOne({ _id: blogpost._id });
+    res.status(200).json({ message: 'Blogpost deleted' });
+  } else {
+    res.status(404);
+    throw new Error('Resouce not found');
+  }
+});
+
+export {
+  getBlogposts,
+  getBlogpostById,
+  createBlogpost,
+  updateBlogpost,
+  deleteBlogpost,
+};

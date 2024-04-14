@@ -5,6 +5,7 @@ import {
   getBlogpostById,
   createBlogpost,
   updateBlogpost,
+  deleteBlogpost,
 } from '../controllers/blogpostController.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import { registered, admin } from '../middleware/authMiddleware.js';
@@ -20,6 +21,7 @@ router
 router
   .route('/:id')
   .get(checkObjectId, getBlogpostById)
-  .put(registered, admin, upload.single('image'), updateBlogpost);
+  .put(registered, admin, upload.single('image'), updateBlogpost)
+  .delete(registered, admin, deleteBlogpost);
 
 export default router;

@@ -8,7 +8,7 @@ import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 
 const schema = Joi.object({
-  image: Joi.any().required().messages({ 'any.required': 'Image required' }),
+  image: Joi.any().required(),
   title: Joi.string()
     .required()
     .messages({ 'string.empty': 'This field is required' }),

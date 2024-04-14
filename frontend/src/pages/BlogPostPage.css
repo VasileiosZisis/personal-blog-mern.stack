@@ -40,3 +40,26 @@
   font-size: 1.1rem;
   margin: 2rem 14rem;
 }
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.article-button {
+  padding-block: 0.6rem;
+  padding-inline: 1.2rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  color: var(--grey-light);
+}
+
+.edit {
+  background-color: var(--black-text);
+}
+
+.delete {
+  background-color: var(--error);
+}

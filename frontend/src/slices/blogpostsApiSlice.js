@@ -1,4 +1,4 @@
-import { BLOGPOSTS_URL, UPLOAD_URL } from '../constants';
+import { BLOGPOSTS_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const blogpostApiSlice = apiSlice.injectEndpoints({
@@ -38,6 +38,13 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
+      invalidatesTags: ['Blogposts'],
+    }),
+    deleteBlogpost: builder.mutation({
+      query: (_id) => ({
+        url: `${BLOGPOSTS_URL}/${_id}`,
+        method: 'delete',
+      }),
     }),
   }),
 });
@@ -48,4 +55,5 @@ export const {
   useCreateBlogpostMutation,
   useUpdateBlogpostMutation,
   useUploadBlogpostMutation,
+  useDeleteBlogpostMutation,
 } = blogpostApiSlice;

@@ -12,21 +12,21 @@ import {
 import Loader from '../components/Loader'
 import { useEffect } from 'react'
 
-// const schema = Joi.object({
-//   _id: Joi.string().hex().length(24),
-//   title: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'This field is required' }),
-//   subtitle: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'This field is required' }),
-//   content: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'This field is required' }),
-//   category: Joi.string()
-//     .required()
-//     .messages({ 'string.empty': 'Choose an option' })
-// })
+const schema = Joi.object({
+  image: Joi.any().required(),
+  title: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
+  subtitle: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
+  content: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'This field is required' }),
+  category: Joi.string()
+    .required()
+    .messages({ 'string.empty': 'Choose an option' })
+})
 const BlogpostEdit = () => {
   const { id } = useParams()
 
@@ -58,7 +58,7 @@ const BlogpostEdit = () => {
     setValue,
     handleSubmit,
     formState: { errors }
-  } = useForm()
+  } = useForm({ resolver: joiResolver(schema) })
 
   const navigate = useNavigate()
 
@@ -75,7 +75,7 @@ const BlogpostEdit = () => {
       formData.append('category', data.category)
       try {
         await uploadBlogpost(formData).unwrap()
-        // navigate('/blog')
+        navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
         refetch()
       } catch (err) {
@@ -84,7 +84,7 @@ const BlogpostEdit = () => {
     } else {
       try {
         await updateBlogpost({ ...data, _id: id }).unwrap()
-        // navigate('/blog')
+        navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
         refetch()
       } catch (err) {
