@@ -20,7 +20,7 @@ const Navbar = () => {
     <header>
       <nav>
         <div className='nav-img-div'>
-          <NavLink to='/' onClick={toggle} className='nav-img-a'>
+          <NavLink to='/' onClick={toggle}>
             <img className='nav-img' src={Logo} />
           </NavLink>
           <button
@@ -35,7 +35,6 @@ const Navbar = () => {
           </button>
         </div>
         <div>
-          <hr className='navbar-hr' />
           <ul className={`nav-ul ${toggleOpen ? 'show' : ''}`}>
             <li className='nav-li'>
               <NavLink className='navlink' to='/about' onClick={toggle}>
@@ -68,7 +67,6 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <hr className='navbar-hr' />
         </div>
       </nav>
     </header>

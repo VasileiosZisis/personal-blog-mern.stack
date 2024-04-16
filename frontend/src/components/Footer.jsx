@@ -28,16 +28,28 @@ const Footer = () => {
       <ul>
         {userInfo ? (
           <>
-            <li>{userInfo.name}</li>
-            <li onClick={logoutHandler}>Logout</li>
+            <li>
+              <b>{userInfo.name}</b>
+            </li>
+            <li className='m-left'>
+              <Link to='/profile'>profile</Link>
+            </li>
+            {userInfo.isAdmin && (
+              <li className='m-left'>
+                <Link to='/new'>create blog</Link>
+              </li>
+            )}
+            <li className='cursor-pointer m-left' onClick={logoutHandler}>
+              logout
+            </li>
           </>
         ) : (
           <>
             <li>
-              <Link to='/register'>Register</Link>
+              <Link to='/register'>register</Link>
             </li>
             <li>
-              <Link to='/login'>Login</Link>
+              <Link to='/login'>login</Link>
             </li>
           </>
         )}

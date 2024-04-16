@@ -18,7 +18,7 @@ const schema = Joi.object({
       'string.empty': 'This field is required',
       'string.email': 'Not a valid email format'
     }),
-  password: Joi.string().allow('')
+  password: Joi.string().required().allow('')
 })
 
 const UpdateProfile = () => {

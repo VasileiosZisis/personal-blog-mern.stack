@@ -18,7 +18,7 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
     }),
     createBlogpost: builder.mutation({
       query: (data) => ({
-        url: `${BLOGPOSTS_URL}`,
+        url: BLOGPOSTS_URL,
         method: 'POST',
         body: data,
       }),

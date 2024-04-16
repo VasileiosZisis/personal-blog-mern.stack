@@ -8,16 +8,6 @@ nav {
   text-align: center;
 }
 
-/* nav a.active::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  left: 0%;
-  bottom: 0;
-  background-color: var(--white-bg);
-} */
-
 .nav-img-div {
   display: flex;
   flex-direction: column;
@@ -26,22 +16,9 @@ nav {
   margin: 1rem;
 }
 
-/* .nav-img-a {
-  max-width: 350px;
-  min-width: 250px;
-} */
-
 .nav-img {
   display: block;
   width: 100%;
-}
-
-.navbar-hr {
-  display: block;
-  margin: auto;
-  background-color: var(--black-text);
-  width: clamp(min(545px), calc(100vw - 10%), max(1000px));
-  height: 2px;
 }
 
 .nav-ul {
@@ -50,67 +27,33 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding-block: 0.2rem;
 }
 
 .nav-li {
-  border: none;
-  transition: all ease-in-out var(--trans-norm);
+  border-top: 2px solid var(--black-text);
+  border-bottom: 2px solid var(--black-text);
+  padding: 0.5rem 1rem;
+  transition: all 0.1s ease-in-out;
   position: relative;
 }
 
 .nav-li:where(:hover, :focus) {
-  border: none;
+  background-color: var(--black-text);
 }
 
 .navlink {
   color: var(--black-text);
   font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
 }
 
-.contact-link {
-  margin-left: -1rem;
-  padding: 0.2rem 1rem;
-  background-color: var(--white-bg);
-  font-size: 1.1rem;
-}
-
-.contact-link-a {
-  color: var(--white);
-  transition: all ease-in-out var(--trans-norm);
-}
-
-.contact-link-a:where(:hover, :focus) {
-  color: var(--black-text);
-}
-
-.contact-link-a-active {
-  color: var(--black-text);
-}
-
-.nav-li::after {
-  content: '';
-  position: absolute;
-  width: 0px;
-  height: 2px;
-  left: 50%;
-  bottom: 0;
-  background-color: var(--white-bg);
-  transition: all ease-in-out var(--trans-norm);
-}
-.nav-li:hover::after {
-  width: 100%;
-  left: 0;
+.nav-li:where(:hover, :focus) .navlink {
+  color: var(--white-bg);
 }
 
 /* MOBILE */
 
 @media only screen and (max-width: 600px) {
-  .navbar-hr {
-    display: none;
-  }
-
   .nav-ul {
     display: none;
   }
@@ -120,11 +63,11 @@ nav {
     align-items: center;
     text-align: center;
     flex-wrap: nowrap;
-    gap: 0.5rem;
-    height: 15rem;
+    padding-bottom: 0.5rem;
   }
-  .contact-link {
-    margin-left: 0;
+  .nav-li {
+    border-top: none;
+    padding: 0.5rem;
   }
 }
 
