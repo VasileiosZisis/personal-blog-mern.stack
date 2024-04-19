@@ -57,6 +57,7 @@ const BlogpostEdit = () => {
     register,
     setValue,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm({ resolver: joiResolver(schema) })
 
@@ -104,12 +105,27 @@ const BlogpostEdit = () => {
         <p>{error.data.message}</p>
       ) : (
         <>
-          <img src={blogpostData.image.url} style={{ width: '150px' }} />
           <form onSubmit={handleSubmit(onFormSubmit)}>
+            <img src={blogpostData.image.url} />
             <label htmlFor='image' name='image'>
-              image
+              Image
             </label>
-            <input type='file' {...register('image')} />
+            <input
+              type='file'
+              {...register('image', {
+                onChange: e => {
+                  if (!e.target.value.match(/\.(jpg|jpeg|webp|png)$/)) {
+                    setError('image', {
+                      type: 'invalid',
+                      message: 'Not a valid image format'
+                    })
+                    return false
+                  } else {
+                    setError(null)
+                  }
+                }
+              })}
+            />
             <p>{errors.image?.message}</p>
             <label htmlFor='title' name='title'>
               Title

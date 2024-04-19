@@ -28,6 +28,7 @@ const BlogpostNew = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm({
     resolver: joiResolver(schema)
@@ -60,7 +61,22 @@ const BlogpostNew = () => {
         <label htmlFor='image' name='image'>
           Image
         </label>
-        <input type='file' {...register('image')} />
+        <input
+          type='file'
+          {...register('image', {
+            onChange: e => {
+              if (!e.target.value.match(/\.(jpg|jpeg|webp|png)$/)) {
+                setError('image', {
+                  type: 'invalid',
+                  message: 'Not a valid image format'
+                })
+                return false
+              } else {
+                setError(null)
+              }
+            }
+          })}
+        />
         <p>{errors.image?.message}</p>
         <label htmlFor='title' name='title'>
           Title
