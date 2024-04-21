@@ -13,7 +13,26 @@ import Loader from '../components/Loader'
 import { useEffect } from 'react'
 
 const schema = Joi.object({
-  image: Joi.any().required(),
+  image: Joi.object().custom((value, helpers) => {
+    if (value[0]) {
+      let allowedExtensions = [
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'image/webp'
+      ]
+      let imageType = value[0].type
+      if (allowedExtensions.indexOf(imageType) > -1) {
+        {
+          return value
+        }
+      } else {
+        return helpers.message('Image must be of type jpeg, jpg, png or webp')
+      }
+    } else {
+      return ''
+    }
+  }),
   title: Joi.string()
     .required()
     .messages({ 'string.empty': 'This field is required' }),
@@ -25,7 +44,11 @@ const schema = Joi.object({
     .messages({ 'string.empty': 'This field is required' }),
   category: Joi.string()
     .required()
-    .messages({ 'string.empty': 'Choose an option' })
+    .valid('game', 'tv', 'book', 'anime')
+    .messages({
+      'string.empty': 'Choose an option',
+      'any.only': 'Not a valid option'
+    })
 })
 const BlogpostEdit = () => {
   const { id } = useParams()
@@ -58,6 +81,7 @@ const BlogpostEdit = () => {
     setValue,
     handleSubmit,
     setError,
+    clearErrors,
     formState: { errors }
   } = useForm({ resolver: joiResolver(schema) })
 
@@ -75,8 +99,9 @@ const BlogpostEdit = () => {
       formData.append('content', data.content)
       formData.append('category', data.category)
       try {
+        console.log(formData)
         await uploadBlogpost(formData).unwrap()
-        navigate(`/blog/${id}`)
+        // navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
         refetch()
       } catch (err) {
@@ -84,8 +109,9 @@ const BlogpostEdit = () => {
       }
     } else {
       try {
+        console.log(data)
         await updateBlogpost({ ...data, _id: id }).unwrap()
-        navigate(`/blog/${id}`)
+        // navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
         refetch()
       } catch (err) {
@@ -122,6 +148,7 @@ const BlogpostEdit = () => {
                     return false
                   } else {
                     setError(null)
+                    clearErrors('image')
                   }
                 }
               })}

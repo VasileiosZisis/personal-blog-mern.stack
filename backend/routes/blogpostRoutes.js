@@ -11,7 +11,11 @@ import checkObjectId from '../middleware/checkObjectId.js';
 import { registered, admin } from '../middleware/authMiddleware.js';
 import { storage } from '../config/cloudinary.js';
 import multer from 'multer';
-import { validateBlogpost, validateImage } from '../middleware/schemas.js';
+import {
+  validateBlogpost,
+  validateImage,
+  validateEditBlogpost,
+} from '../middleware/schemas.js';
 
 const upload = multer({ storage });
 
@@ -34,7 +38,7 @@ router
     admin,
     upload.single('image'),
     validateImage,
-    validateBlogpost,
+    validateEditBlogpost,
     updateBlogpost
   )
   .delete(registered, admin, deleteBlogpost);

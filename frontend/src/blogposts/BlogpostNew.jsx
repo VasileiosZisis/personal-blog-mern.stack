@@ -8,7 +8,26 @@ import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 
 const schema = Joi.object({
-  image: Joi.any().required(),
+  image: Joi.object().custom((value, helpers) => {
+    if (value[0]) {
+      let allowedExtensions = [
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'image/webp'
+      ]
+      let imageType = value[0].type
+      if (allowedExtensions.indexOf(imageType) > -1) {
+        {
+          return true
+        }
+      } else {
+        return helpers.message('Image must be of type jpeg, jpg, png or webp')
+      }
+    } else {
+      return helpers.message('Image is required')
+    }
+  }),
   title: Joi.string()
     .required()
     .messages({ 'string.empty': 'This field is required' }),
@@ -20,7 +39,11 @@ const schema = Joi.object({
     .messages({ 'string.empty': 'This field is required' }),
   category: Joi.string()
     .required()
-    .messages({ 'string.empty': 'Choose an option' })
+    .valid('game', 'tv', 'book', 'anime')
+    .messages({
+      'string.empty': 'Choose an option',
+      'any.only': 'Not a valid option'
+    })
 })
 
 const BlogpostNew = () => {
@@ -29,6 +52,7 @@ const BlogpostNew = () => {
     register,
     handleSubmit,
     setError,
+    clearErrors,
     formState: { errors }
   } = useForm({
     resolver: joiResolver(schema)
@@ -73,6 +97,7 @@ const BlogpostNew = () => {
                 return false
               } else {
                 setError(null)
+                clearErrors('image')
               }
             }
           })}
