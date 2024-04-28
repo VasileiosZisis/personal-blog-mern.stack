@@ -29,25 +29,23 @@ nav {
   align-items: center;
 }
 
-.nav-li {
+.navlink {
   border-top: 2px solid var(--black-text);
   border-bottom: 2px solid var(--black-text);
   padding: 0.5rem 1rem;
   transition: all 0.1s ease-in-out;
-  position: relative;
-}
-
-.nav-li:where(:hover, :focus) {
-  background-color: var(--black-text);
-}
-
-.navlink {
   color: var(--black-text);
   font-size: 1.1rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
-.nav-li:where(:hover, :focus) .navlink {
+.navlink:where(:hover, :focus) {
+  background-color: var(--black-text);
+  color: var(--white-bg);
+}
+
+.navlink.active {
+  background-color: var(--black-text);
   color: var(--white-bg);
 }
 
@@ -66,8 +64,11 @@ nav {
     padding-bottom: 0.5rem;
   }
   .nav-li {
+    width: 100%;
+  }
+  .navlink {
     border-top: none;
-    padding: 0.5rem;
+    display: block;
   }
 }
 

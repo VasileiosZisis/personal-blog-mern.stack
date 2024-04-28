@@ -54,12 +54,23 @@
   font-size: 1.25rem;
   border-radius: 8px;
   color: var(--grey-light);
+  transition: all 0.1s ease-in-out;
 }
 
 .edit {
   background-color: var(--black-text);
 }
 
+.edit:where(:hover, :focus) {
+  background-color: var(--grey-medium);
+  color: var(--black-text);
+}
+
 .delete {
   background-color: var(--error);
+}
+
+.delete:where(:hover, :focus) {
+  background-color: var(--grey-medium);
+  color: var(--black-text);
 }

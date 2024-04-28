@@ -27,6 +27,7 @@ const router = createBrowserRouter(
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/blog/' element={<BlogPage />} />
+      <Route path='/blog/page/:pageNumber' element={<BlogPage />} />
       <Route path='/blog/:id' element={<BlogpostPage />} />
 
       <Route path='' element={<PrivateRoute />}>

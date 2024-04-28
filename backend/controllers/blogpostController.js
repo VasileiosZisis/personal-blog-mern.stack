@@ -3,8 +3,14 @@ import Blogpost from '../models/blogpost.js';
 import { cloudinary } from '../config/cloudinary.js';
 
 const getBlogposts = asyncHandler(async (req, res) => {
-  const blogpostDocs = await Blogpost.find({});
-  res.json(blogpostDocs);
+  const limit = 2;
+  const page = Number(req.query.pageNumber || 1);
+  const total = await Blogpost.countDocuments();
+  const blogpostDocs = await Blogpost.find({})
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(limit * (page - 1));
+  res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
 });
 
 const getBlogpostById = asyncHandler(async (req, res) => {

@@ -1,0 +1,39 @@
+.paginate-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.25rem;
+  color: var(--black-text);
+  border: 2px solid var(--black-text);
+  border-radius: 5px;
+  background-color: var(--white-bg);
+}
+
+.paginate-a,
+.paginate-prev,
+.paginate-next {
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.paginate-a:where(:hover, :focus),
+.paginate-prev:where(:hover, :focus),
+.paginate-next:where(:hover, :focus) {
+  background-color: var(--black-text);
+  color: var(--grey-light);
+}
+
+.paginate-active {
+  background-color: var(--black-text);
+  color: var(--grey-light);
+}
+
+.paginate-dots {
+  padding-inline: 0.1rem;
+}
+
+.paginate-disabled {
+  background-color: var(--black-text);
+  color: var(--grey-light);
+}

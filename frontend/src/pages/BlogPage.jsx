@@ -1,10 +1,22 @@
 import Blogpost from '../components/Blogpost'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useGetBlogpostsQuery } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 import './BlogPage.css'
+import '../components/Paginate.css'
+import ReactPaginate from 'react-paginate'
 
 const BlogPage = () => {
-  const { data: blogposts, isLoading, error } = useGetBlogpostsQuery()
+  const { pageNumber } = useParams()
+  const { data, isLoading, error } = useGetBlogpostsQuery({
+    pageNumber
+  })
+
+  let navigate = useNavigate()
+
+  const handlePageClick = e => {
+    navigate(`/blog/page/${e.selected + 1}`)
+  }
 
   return (
     <main>
@@ -15,11 +27,31 @@ const BlogPage = () => {
       ) : (
         <section className='section-blogpost'>
           <div className='blogpost-card-container'>
-            {blogposts.length > 0 &&
-              blogposts.map(blogpost => (
+            {data.blogpostDocs.length > 0 &&
+              data.blogpostDocs.map(blogpost => (
                 <Blogpost key={blogpost._id} {...blogpost} />
               ))}
           </div>
+          {data.pages > 1 && (
+            <ReactPaginate
+              breakLabel='...'
+              nextLabel='>'
+              pageRangeDisplayed={9}
+              marginPagesDisplayed={1}
+              onPageChange={handlePageClick}
+              pageCount={data.pages}
+              previousLabel='<'
+              renderOnZeroPageCount={null}
+              containerClassName='paginate-container'
+              pageClassName='paginate-li'
+              pageLinkClassName='paginate-a'
+              previousLinkClassName='paginate-prev'
+              nextLinkClassName='paginate-next'
+              activeLinkClassName='paginate-active'
+              breakClassName='paginate-dots'
+              disabledClassName='paginate-disabled'
+            />
+          )}
         </section>
       )}
     </main>

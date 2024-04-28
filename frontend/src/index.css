@@ -34,7 +34,6 @@ main {
   min-height: 70vh;
   display: grid;
   place-content: center;
-  padding-bottom: 2rem;
 }
 
 h1,

@@ -31,15 +31,15 @@ const Footer = () => {
             <li>
               <b>{userInfo.name}</b>
             </li>
-            <li className='m-left'>
+            <li>
               <Link to='/profile'>profile</Link>
             </li>
             {userInfo.isAdmin && (
-              <li className='m-left'>
+              <li>
                 <Link to='/new'>create blog</Link>
               </li>
             )}
-            <li className='cursor-pointer m-left' onClick={logoutHandler}>
+            <li className='logout' onClick={logoutHandler}>
               logout
             </li>
           </>
