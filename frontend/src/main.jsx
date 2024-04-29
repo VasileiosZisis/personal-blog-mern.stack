@@ -19,6 +19,10 @@ import BlogpostPage from './pages/BlogpostPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import BlogpostEdit from './blogposts/BlogpostEdit.jsx'
+import AnimeBlogPage from './pages/AnimeBlogPage.jsx'
+import BookBlogPage from './pages/BookBlogPage.jsx'
+import GameBlogPage from './pages/GameBlogPage.jsx'
+import TvBlogPage from './pages/TvBlogPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +31,14 @@ const router = createBrowserRouter(
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/blog/' element={<BlogPage />} />
+      <Route path='/blog/anime/' element={<AnimeBlogPage />} />
+      <Route path='/blog/anime/page/:pageNumber' element={<AnimeBlogPage />} />
+      <Route path='/blog/books/' element={<BookBlogPage />} />
+      <Route path='/blog/books/:pageNumber' element={<BookBlogPage />} />
+      <Route path='/blog/games/' element={<GameBlogPage />} />
+      <Route path='/blog/games/:pageNumber' element={<GameBlogPage />} />
+      <Route path='/blog/tv/' element={<TvBlogPage />} />
+      <Route path='/blog/tv/:pageNumber' element={<TvBlogPage />} />
       <Route path='/blog/page/:pageNumber' element={<BlogPage />} />
       <Route path='/blog/:id' element={<BlogpostPage />} />
 

@@ -13,6 +13,46 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Blogposts'],
       keepUnusedDataFor: 5,
     }),
+    getAnimeBlogposts: builder.query({
+      query: ({ pageNumber }) => ({
+        url: `${BLOGPOSTS_URL}/anime`,
+        params: {
+          pageNumber,
+        },
+      }),
+      providesTags: ['Blogposts'],
+      keepUnusedDataFor: 5,
+    }),
+    getBookBlogposts: builder.query({
+      query: ({ pageNumber }) => ({
+        url: `${BLOGPOSTS_URL}/books`,
+        params: {
+          pageNumber,
+        },
+      }),
+      providesTags: ['Blogposts'],
+      keepUnusedDataFor: 5,
+    }),
+    getGameBlogposts: builder.query({
+      query: ({ pageNumber }) => ({
+        url: `${BLOGPOSTS_URL}/games`,
+        params: {
+          pageNumber,
+        },
+      }),
+      providesTags: ['Blogposts'],
+      keepUnusedDataFor: 5,
+    }),
+    getTvBlogposts: builder.query({
+      query: ({ pageNumber }) => ({
+        url: `${BLOGPOSTS_URL}/tv`,
+        params: {
+          pageNumber,
+        },
+      }),
+      providesTags: ['Blogposts'],
+      keepUnusedDataFor: 5,
+    }),
     getBlogpostDetails: builder.query({
       query: (_id) => ({
         url: `${BLOGPOSTS_URL}/${_id}`,
@@ -54,6 +94,10 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetBlogpostsQuery,
+  useGetAnimeBlogpostsQuery,
+  useGetBookBlogpostsQuery,
+  useGetGameBlogpostsQuery,
+  useGetTvBlogpostsQuery,
   useGetBlogpostDetailsQuery,
   useCreateBlogpostMutation,
   useUpdateBlogpostMutation,

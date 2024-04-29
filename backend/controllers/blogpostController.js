@@ -13,6 +13,52 @@ const getBlogposts = asyncHandler(async (req, res) => {
   res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
 });
 
+const getAnimeBlogposts = asyncHandler(async (req, res) => {
+  const limit = 16;
+  const page = Number(req.query.pageNumber || 1);
+  const total = await Blogpost.countDocuments();
+  const blogpostDocs = await Blogpost.find({
+    category: 'anime',
+  })
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(limit * (page - 1));
+  res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
+});
+
+const getBookBlogposts = asyncHandler(async (req, res) => {
+  const limit = 16;
+  const page = Number(req.query.pageNumber || 1);
+  const total = await Blogpost.countDocuments();
+  const blogpostDocs = await Blogpost.find({ category: 'book' })
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(limit * (page - 1));
+  res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
+});
+
+const getGameBlogposts = asyncHandler(async (req, res) => {
+  const limit = 16;
+  const page = Number(req.query.pageNumber || 1);
+  const total = await Blogpost.countDocuments();
+  const blogpostDocs = await Blogpost.find({ category: 'game' })
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(limit * (page - 1));
+  res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
+});
+
+const getTvBlogposts = asyncHandler(async (req, res) => {
+  const limit = 16;
+  const page = Number(req.query.pageNumber || 1);
+  const total = await Blogpost.countDocuments();
+  const blogpostDocs = await Blogpost.find({ category: 'tv' })
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(limit * (page - 1));
+  res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
+});
+
 const getBlogpostById = asyncHandler(async (req, res) => {
   const blogpostDoc = await Blogpost.findById(req.params.id);
   if (blogpostDoc) {
@@ -71,6 +117,10 @@ const deleteBlogpost = asyncHandler(async (req, res) => {
 
 export {
   getBlogposts,
+  getAnimeBlogposts,
+  getBookBlogposts,
+  getGameBlogposts,
+  getTvBlogposts,
   getBlogpostById,
   createBlogpost,
   updateBlogpost,

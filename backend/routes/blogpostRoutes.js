@@ -2,6 +2,10 @@ import express from 'express';
 const router = express.Router();
 import {
   getBlogposts,
+  getAnimeBlogposts,
+  getBookBlogposts,
+  getGameBlogposts,
+  getTvBlogposts,
   getBlogpostById,
   createBlogpost,
   updateBlogpost,
@@ -30,6 +34,10 @@ router
     validateBlogpost,
     createBlogpost
   );
+router.route('/anime').get(getAnimeBlogposts);
+router.route('/books').get(getBookBlogposts);
+router.route('/games').get(getGameBlogposts);
+router.route('/tv').get(getTvBlogposts);
 router
   .route('/:id')
   .get(checkObjectId, getBlogpostById)
