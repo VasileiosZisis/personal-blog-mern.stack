@@ -90,21 +90,21 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-const getUsers = asyncHandler(async (req, res) => {
-  res.send('get users');
-});
+// const getUsers = asyncHandler(async (req, res) => {
+//   res.send('get users');
+// });
 
-const getUserById = asyncHandler(async (req, res) => {
-  res.send('get user by id');
-});
+// const getUserById = asyncHandler(async (req, res) => {
+//   res.send('get user by id');
+// });
 
-const deleteUser = asyncHandler(async (req, res) => {
-  res.send('delete user');
-});
+// const deleteUser = asyncHandler(async (req, res) => {
+//   res.send('delete user');
+// });
 
-const updateUser = asyncHandler(async (req, res) => {
-  res.send('update user');
-});
+// const updateUser = asyncHandler(async (req, res) => {
+//   res.send('update user');
+// });
 
 export {
   loginUser,
@@ -112,8 +112,8 @@ export {
   logoutUser,
   getUserProfile,
   updateUserProfile,
-  getUsers,
-  deleteUser,
-  getUserById,
-  updateUser,
+  // getUsers,
+  // deleteUser,
+  // getUserById,
+  // updateUser,
 };

@@ -39,7 +39,7 @@ nav {
   transition: all 0.1s ease-in-out;
 }
 
-.navlink:where(:hover, :focus) {
+.navlink:where(:hover, :focus-visible) {
   background-color: var(--black-text);
   color: var(--white-bg);
 }

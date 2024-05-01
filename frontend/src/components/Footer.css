@@ -29,7 +29,7 @@ footer a {
   transition: all 0.1s ease-in-out;
 }
 
-footer a:where(:hover, :focus) {
+footer a:where(:hover, :focus-visible) {
   color: var(--grey-light);
   background-color: var(--black-text);
 }
@@ -39,7 +39,7 @@ footer a:where(:hover, :focus) {
   transition: all 0.1s ease-in-out;
 }
 
-.logout:where(:hover, :focus) {
+.logout:where(:hover, :focus-visible) {
   color: var(--grey-light);
   background-color: var(--black-text);
 }

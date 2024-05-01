@@ -17,9 +17,9 @@
   transition: all 0.2s ease-in-out;
 }
 
-.paginate-a:where(:hover, :focus),
-.paginate-prev:where(:hover, :focus),
-.paginate-next:where(:hover, :focus) {
+.paginate-a:where(:hover, :focus-visible),
+.paginate-prev:where(:hover, :focus-visible),
+.paginate-next:where(:hover, :focus-visible) {
   background-color: var(--black-text);
   color: var(--grey-light);
 }
