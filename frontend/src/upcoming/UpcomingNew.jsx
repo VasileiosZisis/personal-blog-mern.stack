@@ -1,10 +1,9 @@
 import FormContainer from '../components/FormContainer'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
 import Joi from 'joi'
-import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
+import { useCreateUpcomingMutation } from '../slices/upcomingApiSlice'
 import Loader from '../components/Loader'
 
 const schema = Joi.object({
@@ -33,21 +32,10 @@ const schema = Joi.object({
     .messages({ 'string.empty': 'This field is required' }),
   subtitle: Joi.string()
     .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  content: Joi.string()
-    .required()
-    .messages({ 'string.empty': 'This field is required' }),
-  category: Joi.string()
-    .required()
-    .valid('game', 'tv', 'book', 'anime')
-    .messages({
-      'string.empty': 'Choose an option',
-      'any.only': 'Not a valid option'
-    })
+    .messages({ 'string.empty': 'This field is required' })
 })
 
-const BlogpostNew = () => {
-  const navigate = useNavigate()
+const UpcomingNew = () => {
   const {
     register,
     handleSubmit,
@@ -58,7 +46,7 @@ const BlogpostNew = () => {
     resolver: joiResolver(schema)
   })
 
-  const [createBlogpost, { isLoading, refetch }] = useCreateBlogpostMutation()
+  const [createUpcoming, { isLoading, refetch }] = useCreateUpcomingMutation()
 
   const onFormSubmit = async data => {
     const formData = new FormData()
@@ -67,12 +55,9 @@ const BlogpostNew = () => {
     formData.append('image', data.image)
     formData.append('title', data.title)
     formData.append('subtitle', data.subtitle)
-    formData.append('content', data.content)
-    formData.append('category', data.category)
     try {
-      await createBlogpost(formData).unwrap()
-      navigate('/blog')
-      toast.success('Blogpost has been created')
+      await createUpcoming(formData).unwrap()
+      toast.success('Card has been created')
       refetch()
     } catch (err) {
       toast.error(err?.data?.message || err.error)
@@ -113,20 +98,6 @@ const BlogpostNew = () => {
         </label>
         <input type='text' {...register('subtitle')} />
         <p>{errors.subtitle?.message}</p>
-        <label htmlFor='content' name='content'>
-          Content
-        </label>
-        <textarea rows='10' cols='100' type='text' {...register('content')} />
-        <p>{errors.content?.message}</p>
-        <label htmlFor='category'>Choose a category:</label>
-        <select name='category' {...register('category')}>
-          <option value=''></option>
-          <option value='game'>Game</option>
-          <option value='tv'>TV</option>
-          <option value='anime'>Anime</option>
-          <option value='book'>Book</option>
-        </select>
-        <p>{errors.category?.message}</p>
         <button type='submit'>Submit</button>
         {isLoading && <Loader />}
       </form>
@@ -134,4 +105,4 @@ const BlogpostNew = () => {
   )
 }
 
-export default BlogpostNew
+export default UpcomingNew

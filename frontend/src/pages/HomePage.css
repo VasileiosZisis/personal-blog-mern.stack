@@ -1,5 +1,5 @@
 .gallery-image {
-  margin: 1rem;
+  margin-top: 2rem;
 }
 
 .gallery-image img {
@@ -14,24 +14,31 @@
 .section-currently,
 .section-latest {
   text-align: center;
+  margin-block: 2rem;
 }
 
 .mySwiper {
   width: clamp(min(250px), calc(100vw - 10%), max(1000px));
 }
 
-.currently-h2,
-.latest-h2 {
+.currently-h2 {
   margin-top: 3rem;
   margin-bottom: 1rem;
   font-size: 2.2rem;
-  font-weight: 400;
+  font-weight: 700;
+}
+
+.latest-h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .currently-card {
   width: 100%;
   height: 300px;
   background-color: var(--grey-light);
+  padding-top: 0.3rem;
 }
 
 .currently-card > * {

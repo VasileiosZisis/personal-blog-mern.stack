@@ -35,9 +35,14 @@ const Footer = () => {
               <Link to='/profile'>profile</Link>
             </li>
             {userInfo.isAdmin && (
-              <li>
-                <Link to='/new'>create blog</Link>
-              </li>
+              <>
+                <li>
+                  <Link to='/new'>create blog</Link>
+                </li>
+                <li>
+                  <Link to='/new-upcoming'>create card</Link>
+                </li>
+              </>
             )}
             <li className='logout' onClick={logoutHandler}>
               logout

@@ -1,5 +1,6 @@
 .article {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .article-img {
@@ -46,6 +47,7 @@
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
+  margin-block: 2rem;
 }
 
 .article-button {

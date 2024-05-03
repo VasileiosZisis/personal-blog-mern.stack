@@ -111,7 +111,7 @@ const deleteBlogpost = asyncHandler(async (req, res) => {
     res.status(200).json({ message: 'Blogpost deleted' });
   } else {
     res.status(404);
-    throw new Error('Resouce not found');
+    throw new Error('Resource not found');
   }
 });
 

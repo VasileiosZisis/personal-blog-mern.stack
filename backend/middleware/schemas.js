@@ -44,6 +44,25 @@ const validateEditBlogpost = (req, res, next) => {
   }
 };
 
+const upcomingSchema = Joi.object({
+  image: Joi.string()
+    .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
+    .required(),
+  title: Joi.string().required(),
+  subtitle: Joi.string().required(),
+});
+
+const validateUpcoming = (req, res, next) => {
+  const { error } = upcomingSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(',');
+    res.status(404);
+    throw new Error('One or more fields are not valid');
+  } else {
+    next();
+  }
+};
+
 const imageSchema = Joi.object({
   mimetype: Joi.string()
     .valid('image/jpeg', 'image/png', 'image/jpg', 'image/webp')
@@ -61,4 +80,9 @@ const validateImage = (req, res, next) => {
   }
 };
 
-export { validateBlogpost, validateImage, validateEditBlogpost };
+export {
+  validateBlogpost,
+  validateImage,
+  validateEditBlogpost,
+  validateUpcoming,
+};
