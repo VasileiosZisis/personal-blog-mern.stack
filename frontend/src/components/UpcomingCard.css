@@ -1,0 +1,50 @@
+.currently-card {
+  width: 100%;
+  height: 300px;
+  background-color: var(--grey-light);
+  padding-top: 0.3rem;
+  position: relative;
+}
+
+.currently-card > * {
+  margin-top: 0.3rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: var(--black-text);
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+}
+
+.card-subtitle {
+  font-size: 1.2rem;
+  color: var(--grey-text);
+  font-family: 'Merriweather', serif;
+}
+
+.card-hr {
+  background-color: var(--black-text);
+  height: 2px;
+  margin-inline: 2rem;
+}
+
+.card-img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 230px;
+  max-height: 180px;
+  box-shadow: 9px 9px 4px var(--grey-medium);
+}
+
+.upcoming-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  top: 0;
+  right: 0;
+  margin-right: 5px;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+}

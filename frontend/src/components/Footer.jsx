@@ -40,7 +40,10 @@ const Footer = () => {
                   <Link to='/new'>create blog</Link>
                 </li>
                 <li>
-                  <Link to='/new-upcoming'>create card</Link>
+                  <Link to='/new-upcoming'>create cards</Link>
+                </li>
+                <li>
+                  <Link to='/show-upcoming'>Show cards</Link>
                 </li>
               </>
             )}

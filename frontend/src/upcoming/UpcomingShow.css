@@ -1,0 +1,27 @@
+#upcoming-show-page {
+  text-align: center;
+  margin-block: 2rem;
+}
+
+#upcoming-show-page .upcoming-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#upcoming-show-page .currently-card {
+  width: 300px;
+  /* position: relative; */
+}
+
+/* #upcoming-show-page .upcoming-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  top: 0;
+  right: 0;
+  margin-right: 5px;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+} */

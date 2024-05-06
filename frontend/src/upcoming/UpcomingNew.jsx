@@ -28,6 +28,7 @@ const schema = Joi.object({
     }
   }),
   title: Joi.string()
+    .valid('Reading', 'Watching', 'Playing')
     .required()
     .messages({ 'string.empty': 'This field is required' }),
   subtitle: Joi.string()

@@ -24,6 +24,7 @@ import BookBlogPage from './pages/BookBlogPage.jsx'
 import GameBlogPage from './pages/GameBlogPage.jsx'
 import TvBlogPage from './pages/TvBlogPage.jsx'
 import UpcomingNew from './upcoming/UpcomingNew.jsx'
+import UpcomingShow from './upcoming/UpcomingShow.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
         <Route path='/new' element={<BlogpostNew />} />
         <Route path='/blog/:id/edit' element={<BlogpostEdit />} />
         <Route path='/new-upcoming' element={<UpcomingNew />} />
+        <Route path='/show-upcoming' element={<UpcomingShow />} />
       </Route>
     </Route>
   )

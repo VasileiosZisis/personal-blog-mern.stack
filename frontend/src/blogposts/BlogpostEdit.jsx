@@ -101,7 +101,7 @@ const BlogpostEdit = () => {
       try {
         console.log(formData)
         await uploadBlogpost(formData).unwrap()
-        // navigate(`/blog/${id}`)
+        navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
         refetch()
       } catch (err) {
@@ -111,7 +111,7 @@ const BlogpostEdit = () => {
       try {
         console.log(data)
         await updateBlogpost({ ...data, _id: id }).unwrap()
-        // navigate(`/blog/${id}`)
+        navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
         refetch()
       } catch (err) {
