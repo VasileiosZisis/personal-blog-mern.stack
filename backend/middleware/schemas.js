@@ -48,7 +48,7 @@ const upcomingSchema = Joi.object({
   image: Joi.string()
     .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
     .required(),
-  title: Joi.string().required(),
+  title: Joi.string().valid('Reading', 'Watching', 'Playing').required(),
   subtitle: Joi.string().required(),
 });
 
