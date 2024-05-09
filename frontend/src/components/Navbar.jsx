@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import './Navbar.css'
-import Logo from '../assets/Header-Title.png'
 
 const Navbar = () => {
   const [toggleOpen, setToggleOpen] = useState(false)
@@ -21,7 +20,10 @@ const Navbar = () => {
       <nav>
         <div className='nav-img-div'>
           <NavLink to='/' onClick={toggle}>
-            <img className='nav-img' src={Logo} />
+            <img
+              className='nav-img'
+              src='https://res.cloudinary.com/dmdbza74n/image/upload/v1715279602/MyBlog/Header-Title_doqdma.png'
+            />
           </NavLink>
           <button
             onClick={e => handleOpen(e)}

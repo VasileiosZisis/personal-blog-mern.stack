@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <main>
       <section className='gallery-image'>
-        <img src={Gallery} />
+        <img src='https://res.cloudinary.com/dmdbza74n/image/upload/v1715279602/MyBlog/gallery_tkhsi3.webp' />
       </section>
       <section className='section-currently'>
         <h2 className='currently-h2'>Currently</h2>
