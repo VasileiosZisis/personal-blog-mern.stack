@@ -3,7 +3,6 @@ import Blogpost from '../components/Blogpost'
 import Loader from '../components/Loader'
 import { useGetBlogpostsQuery } from '../slices/blogpostsApiSlice'
 import { useParams } from 'react-router-dom'
-import Gallery from '../assets/gallery.webp'
 import Carousel from '../components/Carousel'
 
 const HomePage = () => {

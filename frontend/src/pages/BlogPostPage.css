@@ -39,7 +39,8 @@
 .article-p {
   color: var(--black-text);
   font-size: 1.1rem;
-  margin: 2rem 14rem;
+  margin: 2rem 2rem;
+  max-width: 100ch;
 }
 
 .button-container {

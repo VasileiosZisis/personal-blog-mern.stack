@@ -1,4 +1,4 @@
-.about-image img {
+.hire-image img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -7,14 +7,25 @@
   max-height: 300px;
 }
 
-.article-about {
+.article-hire {
   text-align: center;
   margin-top: 2rem;
 }
 
-.article-p-about {
+.article-p-hire {
   color: var(--black-text);
   font-size: 1.1rem;
   margin: 2rem 2rem;
   max-width: 100ch;
+}
+
+.link-hire {
+  color: var(--black-text);
+  font-weight: 700;
+  word-wrap: nowrap;
+  transition: color 0.2s ease-in-out;
+}
+
+.link-hire:where(:hover, :focus-visible) {
+  color: var(--grey-dark);
 }

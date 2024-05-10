@@ -26,6 +26,7 @@ import TvBlogPage from './pages/TvBlogPage.jsx'
 import UpcomingNew from './upcoming/UpcomingNew.jsx'
 import UpcomingShow from './upcoming/UpcomingShow.jsx'
 import AboutPage from './pages/AboutPage.jsx'
+import HirePage from './pages/HirePage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
       <Route path='/blog/page/:pageNumber' element={<BlogPage />} />
       <Route path='/blog/:id' element={<BlogpostPage />} />
       <Route path='/about' element={<AboutPage />} />
+      <Route path='/hire-me' element={<HirePage />} />
 
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<UpdateProfile />} />
