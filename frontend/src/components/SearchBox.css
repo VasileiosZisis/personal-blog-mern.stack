@@ -1,0 +1,36 @@
+.search-container {
+  display: grid;
+  margin: 2rem;
+  place-content: center;
+}
+
+.search-container form {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  width: 100%;
+  height: 25px;
+  padding: 0.2rem;
+  outline: 2px solid var(--black-text);
+}
+
+.search-container input:where(:focus) {
+  box-shadow: 1px 1px 9px var(--black-text);
+}
+
+.search-container button {
+  margin: 0.3rem;
+  padding-block: 0.3rem;
+  padding-inline: 0.6rem;
+  border-radius: 8px;
+  background-color: var(--black-text);
+  color: var(--grey-light);
+  transition: all 0.1s ease-in-out;
+}
+
+.search-container button:where(:hover, :focus-visible) {
+  background-color: var(--grey-medium);
+  color: var(--black-text);
+}

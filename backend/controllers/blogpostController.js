@@ -5,8 +5,14 @@ import { cloudinary } from '../config/cloudinary.js';
 const getBlogposts = asyncHandler(async (req, res) => {
   const limit = 2;
   const page = Number(req.query.pageNumber || 1);
-  const total = await Blogpost.countDocuments();
-  const blogpostDocs = await Blogpost.find({})
+
+  const keyword = req.query.keyword
+    ? { title: { $regex: req.query.keyword, $options: 'i' } }
+    : {};
+
+  const total = await Blogpost.countDocuments({ ...keyword });
+
+  const blogpostDocs = await Blogpost.find({ ...keyword })
     .sort({ createdAt: -1 })
     .limit(limit)
     .skip(limit * (page - 1));

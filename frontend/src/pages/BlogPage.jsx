@@ -5,21 +5,28 @@ import Loader from '../components/Loader'
 import './BlogPage.css'
 import '../components/Paginate.css'
 import ReactPaginate from 'react-paginate'
+import SearchBox from '../components/SearchBox'
 
 const BlogPage = () => {
-  const { pageNumber } = useParams()
+  const { pageNumber, keyword } = useParams()
   const { data, isLoading, error } = useGetBlogpostsQuery({
+    keyword,
     pageNumber
   })
 
   let navigate = useNavigate()
 
   const handlePageClick = e => {
-    navigate(`/blog/page/${e.selected + 1}`)
+    navigate(
+      keyword
+        ? `/blog/search/${keyword}/page/${e.selected + 1}`
+        : `/blog/page/${e.selected + 1}`
+    )
   }
 
   return (
     <main>
+      <SearchBox />
       {isLoading ? (
         <Loader />
       ) : error ? (

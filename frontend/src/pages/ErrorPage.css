@@ -1,0 +1,35 @@
+.errorpage-h1,
+.errorpage-p {
+  text-align: center;
+}
+
+.errorpage-h1 h1 {
+  font-size: 2.5rem;
+  color: var(--black-text);
+}
+
+.errorpage-p p {
+  font-size: 1.3rem;
+  color: var(--black-text);
+}
+
+.errorpage-button {
+  text-align: center;
+  margin: 1rem;
+}
+
+.errorpage-button button {
+  word-wrap: none;
+  font-size: 1.25rem;
+  padding-block: 0.6rem;
+  padding-inline: 1.2rem;
+  border-radius: 8px;
+  background-color: var(--black-text);
+  color: var(--grey-light);
+  transition: all 0.1s ease-in-out;
+}
+
+.errorpage-button button:where(:hover, :focus-visible) {
+  background-color: var(--grey-medium);
+  color: var(--black-text);
+}

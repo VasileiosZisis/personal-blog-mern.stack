@@ -27,6 +27,7 @@ import UpcomingNew from './upcoming/UpcomingNew.jsx'
 import UpcomingShow from './upcoming/UpcomingShow.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import HirePage from './pages/HirePage.jsx'
+import ErrorPage from './pages/ErrorPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,12 @@ const router = createBrowserRouter(
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/blog/' element={<BlogPage />} />
+      <Route path='/blog/search/:keyword' element={<BlogPage />} />
+      <Route path='/blog/page/:pageNumber' element={<BlogPage />} />
+      <Route
+        path='/blog/search/:keyword/page/:pageNumber'
+        element={<BlogPage />}
+      />
       <Route path='/blog/anime/' element={<AnimeBlogPage />} />
       <Route path='/blog/anime/page/:pageNumber' element={<AnimeBlogPage />} />
       <Route path='/blog/books/' element={<BookBlogPage />} />
@@ -43,10 +50,10 @@ const router = createBrowserRouter(
       <Route path='/blog/games/:pageNumber' element={<GameBlogPage />} />
       <Route path='/blog/tv/' element={<TvBlogPage />} />
       <Route path='/blog/tv/:pageNumber' element={<TvBlogPage />} />
-      <Route path='/blog/page/:pageNumber' element={<BlogPage />} />
       <Route path='/blog/:id' element={<BlogpostPage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/hire-me' element={<HirePage />} />
+      <Route path='*' element={<ErrorPage />} />
 
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<UpdateProfile />} />

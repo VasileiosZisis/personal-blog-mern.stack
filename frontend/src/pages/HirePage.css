@@ -4,7 +4,6 @@
   margin-right: auto;
   width: clamp(min(250px), calc(100vw - 10%), max(1000px));
   min-height: 150px;
-  max-height: 300px;
 }
 
 .article-hire {
