@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import Joi from 'joi'
 import { useCreateUpcomingMutation } from '../slices/upcomingApiSlice'
 import Loader from '../components/Loader'
+import { Helmet } from 'react-helmet-async'
 
 const schema = Joi.object({
   image: Joi.object().custom((value, helpers) => {
@@ -66,43 +67,49 @@ const UpcomingNew = () => {
   }
 
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
-        <label htmlFor='image' name='image'>
-          Image
-        </label>
-        <input
-          type='file'
-          {...register('image', {
-            onChange: e => {
-              if (!e.target.value.match(/\.(jpg|jpeg|webp|png)$/)) {
-                setError('image', {
-                  type: 'invalid',
-                  message: 'Not a valid image format'
-                })
-                return false
-              } else {
-                setError(null)
-                clearErrors('image')
+    <>
+      <Helmet>
+        <title>New Upcoming | Quick and Honest</title>
+        <meta name='robots' content='noindex' />
+      </Helmet>
+      <FormContainer>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <label htmlFor='image' name='image'>
+            Image
+          </label>
+          <input
+            type='file'
+            {...register('image', {
+              onChange: e => {
+                if (!e.target.value.match(/\.(jpg|jpeg|webp|png)$/)) {
+                  setError('image', {
+                    type: 'invalid',
+                    message: 'Not a valid image format'
+                  })
+                  return false
+                } else {
+                  setError(null)
+                  clearErrors('image')
+                }
               }
-            }
-          })}
-        />
-        <p>{errors.image?.message}</p>
-        <label htmlFor='title' name='title'>
-          Title
-        </label>
-        <input type='text' {...register('title')} />
-        <p>{errors.title?.message}</p>
-        <label htmlFor='subtitle' name='subtitle'>
-          Subtitle
-        </label>
-        <input type='text' {...register('subtitle')} />
-        <p>{errors.subtitle?.message}</p>
-        <button type='submit'>Submit</button>
-        {isLoading && <Loader />}
-      </form>
-    </FormContainer>
+            })}
+          />
+          <p>{errors.image?.message}</p>
+          <label htmlFor='title' name='title'>
+            Title
+          </label>
+          <input type='text' {...register('title')} />
+          <p>{errors.title?.message}</p>
+          <label htmlFor='subtitle' name='subtitle'>
+            Subtitle
+          </label>
+          <input type='text' {...register('subtitle')} />
+          <p>{errors.subtitle?.message}</p>
+          <button type='submit'>Submit</button>
+          {isLoading && <Loader />}
+        </form>
+      </FormContainer>
+    </>
   )
 }
 

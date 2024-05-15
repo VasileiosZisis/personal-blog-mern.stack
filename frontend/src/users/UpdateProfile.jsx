@@ -7,6 +7,7 @@ import Loader from '../components/Loader'
 import { useProfileMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import { toast } from 'react-toastify'
+import { Helmet } from 'react-helmet-async'
 
 const schema = Joi.object({
   name: Joi.string().messages({
@@ -50,27 +51,33 @@ const UpdateProfile = () => {
     }
   }
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
-        <label htmlFor='nane' name='name'>
-          Name
-        </label>
-        <input type='text' {...register('name')} />
-        <p>{errors.email?.message}</p>
-        <label htmlFor='email' name='email'>
-          Email
-        </label>
-        <input type='email' {...register('email')} />
-        <p>{errors.email?.message}</p>
-        <label htmlFor='password' name='password'>
-          Password
-        </label>
-        <input type='password' {...register('password')} />
-        <p>{errors.password?.message}</p>
-        <button type='submit'>Submit</button>
-        {isLoading && <Loader />}
-      </form>
-    </FormContainer>
+    <>
+      <Helmet>
+        <title>Update Profile | Quick and Honest</title>
+        <meta name='robots' content='noindex' />
+      </Helmet>
+      <FormContainer>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <label htmlFor='nane' name='name'>
+            Name
+          </label>
+          <input type='text' {...register('name')} />
+          <p>{errors.email?.message}</p>
+          <label htmlFor='email' name='email'>
+            Email
+          </label>
+          <input type='email' {...register('email')} />
+          <p>{errors.email?.message}</p>
+          <label htmlFor='password' name='password'>
+            Password
+          </label>
+          <input type='password' {...register('password')} />
+          <p>{errors.password?.message}</p>
+          <button type='submit'>Submit</button>
+          {isLoading && <Loader />}
+        </form>
+      </FormContainer>
+    </>
   )
 }
 

@@ -11,6 +11,7 @@ import {
 } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const schema = Joi.object({
   image: Joi.object().custom((value, helpers) => {
@@ -121,73 +122,79 @@ const BlogpostEdit = () => {
   }
 
   return (
-    <FormContainer>
-      {loadingUpdate && <Loader />}
-      {loadingImageUpdate && <Loader />}
+    <>
+      <Helmet>
+        <title>Edit Blogpost | Quick and Honest</title>
+        <meta name='robots' content='noindex' />
+      </Helmet>
+      <FormContainer>
+        {loadingUpdate && <Loader />}
+        {loadingImageUpdate && <Loader />}
 
-      {isLoading ? (
-        <Loader />
-      ) : error ? (
-        <p>{error.data.message}</p>
-      ) : (
-        <>
-          <form onSubmit={handleSubmit(onFormSubmit)}>
-            <img src={blogpostData.image.url} />
-            <label htmlFor='image' name='image'>
-              Image
-            </label>
-            <input
-              type='file'
-              {...register('image', {
-                onChange: e => {
-                  if (!e.target.value.match(/\.(jpg|jpeg|webp|png)$/)) {
-                    setError('image', {
-                      type: 'invalid',
-                      message: 'Not a valid image format'
-                    })
-                    return false
-                  } else {
-                    setError(null)
-                    clearErrors('image')
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <p>{error.data.message}</p>
+        ) : (
+          <>
+            <form onSubmit={handleSubmit(onFormSubmit)}>
+              <img src={blogpostData.image.url} />
+              <label htmlFor='image' name='image'>
+                Image
+              </label>
+              <input
+                type='file'
+                {...register('image', {
+                  onChange: e => {
+                    if (!e.target.value.match(/\.(jpg|jpeg|webp|png)$/)) {
+                      setError('image', {
+                        type: 'invalid',
+                        message: 'Not a valid image format'
+                      })
+                      return false
+                    } else {
+                      setError(null)
+                      clearErrors('image')
+                    }
                   }
-                }
-              })}
-            />
-            <p>{errors.image?.message}</p>
-            <label htmlFor='title' name='title'>
-              Title
-            </label>
-            <input type='text' {...register('title')} />
-            <p>{errors.title?.message}</p>
-            <label htmlFor='subtitle' name='subtitle'>
-              Subtitle
-            </label>
-            <input type='text' {...register('subtitle')} />
-            <p>{errors.subtitle?.message}</p>
-            <label htmlFor='content' name='content'>
-              Content
-            </label>
-            <textarea
-              rows='10'
-              cols='100'
-              type='text'
-              {...register('content')}
-            />
-            <p>{errors.content?.message}</p>
-            <label htmlFor='category'>Choose a category:</label>
-            <select name='category' {...register('category')}>
-              <option value=''></option>
-              <option value='game'>Game</option>
-              <option value='tv'>TV</option>
-              <option value='anime'>Anime</option>
-              <option value='book'>Book</option>
-            </select>
-            <p>{errors.category?.message}</p>
-            <button type='submit'>Submit</button>
-          </form>
-        </>
-      )}
-    </FormContainer>
+                })}
+              />
+              <p>{errors.image?.message}</p>
+              <label htmlFor='title' name='title'>
+                Title
+              </label>
+              <input type='text' {...register('title')} />
+              <p>{errors.title?.message}</p>
+              <label htmlFor='subtitle' name='subtitle'>
+                Subtitle
+              </label>
+              <input type='text' {...register('subtitle')} />
+              <p>{errors.subtitle?.message}</p>
+              <label htmlFor='content' name='content'>
+                Content
+              </label>
+              <textarea
+                rows='10'
+                cols='100'
+                type='text'
+                {...register('content')}
+              />
+              <p>{errors.content?.message}</p>
+              <label htmlFor='category'>Choose a category:</label>
+              <select name='category' {...register('category')}>
+                <option value=''></option>
+                <option value='game'>Game</option>
+                <option value='tv'>TV</option>
+                <option value='anime'>Anime</option>
+                <option value='book'>Book</option>
+              </select>
+              <p>{errors.category?.message}</p>
+              <button type='submit'>Submit</button>
+            </form>
+          </>
+        )}
+      </FormContainer>
+    </>
   )
 }
 

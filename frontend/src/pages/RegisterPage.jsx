@@ -8,6 +8,7 @@ import { setCredentials } from '../slices/authSlice'
 import Joi from 'joi'
 import { toast } from 'react-toastify'
 import Loader from '../components/Loader'
+import { Helmet } from 'react-helmet-async'
 
 const schema = Joi.object({
   name: Joi.string().required().messages({
@@ -47,27 +48,33 @@ const RegisterPage = () => {
   }
 
   return (
-    <FormContainer>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
-        <label htmlFor='nane' name='name'>
-          Name
-        </label>
-        <input type='text' {...regForm('name')} />
-        <p>{errors.email?.message}</p>
-        <label htmlFor='email' name='email'>
-          Email
-        </label>
-        <input type='email' {...regForm('email')} />
-        <p>{errors.email?.message}</p>
-        <label htmlFor='password' name='password'>
-          Password
-        </label>
-        <input type='password' {...regForm('password')} />
-        <p>{errors.password?.message}</p>
-        <button type='submit'>Submit</button>
-        {isLoading && <Loader />}
-      </form>
-    </FormContainer>
+    <>
+      <Helmet>
+        <title>Register | Quick and Honest</title>
+        <meta name='robots' content='noindex' />
+      </Helmet>
+      <FormContainer>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <label htmlFor='nane' name='name'>
+            Name
+          </label>
+          <input type='text' {...regForm('name')} />
+          <p>{errors.email?.message}</p>
+          <label htmlFor='email' name='email'>
+            Email
+          </label>
+          <input type='email' {...regForm('email')} />
+          <p>{errors.email?.message}</p>
+          <label htmlFor='password' name='password'>
+            Password
+          </label>
+          <input type='password' {...regForm('password')} />
+          <p>{errors.password?.message}</p>
+          <button type='submit'>Submit</button>
+          {isLoading && <Loader />}
+        </form>
+      </FormContainer>
+    </>
   )
 }
 

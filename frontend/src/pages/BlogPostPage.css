@@ -36,6 +36,12 @@
   height: 2px;
 }
 
+.article-p-container {
+  text-align: center;
+  display: grid;
+  place-content: center;
+}
+
 .article-p {
   color: var(--black-text);
   font-size: 1.1rem;

@@ -9,6 +9,8 @@
 .article-hire {
   text-align: center;
   margin-top: 2rem;
+  display: grid;
+  place-content: center;
 }
 
 .article-p-hire {

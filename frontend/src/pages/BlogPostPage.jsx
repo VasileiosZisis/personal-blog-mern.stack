@@ -6,6 +6,7 @@ import {
 import './BlogpostPage.css'
 import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
+import MetaTags from '../components/MetaTags'
 
 const BlogpostPage = () => {
   const { id } = useParams()
@@ -36,28 +37,37 @@ const BlogpostPage = () => {
       ) : error ? (
         <div>{error?.data?.message || error.error}</div>
       ) : (
-        <main>
-          <article className='article'>
-            <img className='article-img' src={blogpost.image.url} />
-            <h1 className='article-h1'>{blogpost.title}</h1>
-            <h2 className='article-h2'>{blogpost.subtitle}</h2>
-            <time className='article-time'>{blogpost.createdAt}</time>
-            <hr className='article-hr' />
-            <p className='article-p'>{blogpost.content}</p>
-          </article>
-          <div className='button-container'>
-            <Link to={`/blog/${id}/edit`} className='article-link'>
-              <button className='article-button edit'>Edit</button>
-            </Link>
-            <button
-              className='article-button delete'
-              onClick={() => deleteHandler(id)}
-            >
-              Delete
-            </button>
-          </div>
-          {loadingDelete && <Loader />}
-        </main>
+        <>
+          <MetaTags
+            metatitle={blogpost.title}
+            metadescription={blogpost.title + ' ' + blogpost.subtitle}
+            metaurl={id}
+          />
+          <main>
+            <article className='article'>
+              <img className='article-img' src={blogpost.image.url} />
+              <h1 className='article-h1'>{blogpost.title}</h1>
+              <h2 className='article-h2'>{blogpost.subtitle}</h2>
+              <time className='article-time'>{blogpost.createdAt}</time>
+              <hr className='article-hr' />
+              <div className='article-p-container'>
+                <p className='article-p'>{blogpost.content}</p>
+              </div>
+            </article>
+            <div className='button-container'>
+              <Link to={`/blog/${id}/edit`} className='article-link'>
+                <button className='article-button edit'>Edit</button>
+              </Link>
+              <button
+                className='article-button delete'
+                onClick={() => deleteHandler(id)}
+              >
+                Delete
+              </button>
+            </div>
+            {loadingDelete && <Loader />}
+          </main>
+        </>
       )}
     </>
   )
