@@ -1,6 +1,10 @@
+.searchbox {
+  text-align: center;
+}
+
 .search-container {
   display: grid;
-  margin: 2rem;
+  margin: 2rem 2rem 0rem 2rem;
   place-content: center;
 }
 
@@ -33,4 +37,9 @@
 .search-container button:where(:hover, :focus-visible) {
   background-color: var(--grey-medium);
   color: var(--black-text);
+}
+
+.search-p {
+  margin: 0rem 2rem 2rem 2rem;
+  color: var(--error);
 }

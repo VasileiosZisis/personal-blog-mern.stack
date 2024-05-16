@@ -22,7 +22,7 @@ const ErrorPage = () => {
         />
         <link rel='canonical' href='https://www.quickandhonest.com/error' />
         <title>Error | Quick and Honest</title>
-        <meta property='og:title' content='Quick and Honest' />
+        <meta property='og:title' content='Error | Quick and Honest' />
         <meta
           property='og:description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the

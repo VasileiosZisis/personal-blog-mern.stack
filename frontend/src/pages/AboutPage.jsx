@@ -13,7 +13,7 @@ const AboutPage = () => {
         />
         <link rel='canonical' href='https://www.quickandhonest.com/about' />
         <title>About | Quick and Honest</title>
-        <meta property='og:title' content='Quick and Honest' />
+        <meta property='og:title' content='About | Quick and Honest' />
         <meta
           property='og:description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the

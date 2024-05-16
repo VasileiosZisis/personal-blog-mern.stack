@@ -31,17 +31,17 @@ const BlogPage = () => {
         <meta
           name='description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the
-  things that I enjoy to spend my time on: games, anime, TV shows and
-  books.'
+                  things that I enjoy to spend my time on: games, anime, TV shows and
+                  books.'
         />
         <link rel='canonical' href='https://www.quickandhonest.com/blog' />
         <title>Blog | Quick and Honest</title>
-        <meta property='og:title' content='Quick and Honest' />
+        <meta property='og:title' content='Blog | Quick and Honest' />
         <meta
           property='og:description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the
-  things that I enjoy to spend my time on: games, anime, TV shows and
-  books.'
+                  things that I enjoy to spend my time on: games, anime, TV shows and
+                  books.'
         />
         <meta property='og:url' content='https://www.quickandhonest.com/blog' />
         <meta

@@ -33,7 +33,7 @@ const GameBlogPage = () => {
           href='https://www.quickandhonest.com/blog/games'
         />
         <title>Games | Quick and Honest</title>
-        <meta property='og:title' content='Quick and Honest' />
+        <meta property='og:title' content='Games | Quick and Honest' />
         <meta
           property='og:description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the

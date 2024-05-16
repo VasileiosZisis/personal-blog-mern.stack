@@ -33,7 +33,7 @@ const AnimeBlogPage = () => {
           href='https://www.quickandhonest.com/blog/anime'
         />
         <title>Anime | Quick and Honest</title>
-        <meta property='og:title' content='Quick and Honest' />
+        <meta property='og:title' content='Anime | Quick and Honest' />
         <meta
           property='og:description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the

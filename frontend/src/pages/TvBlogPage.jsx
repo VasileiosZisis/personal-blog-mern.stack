@@ -30,7 +30,7 @@ const TvBlogPage = () => {
         />
         <link rel='canonical' href='https://www.quickandhonest.com/blog/tv' />
         <title>TV | Quick and Honest</title>
-        <meta property='og:title' content='Quick and Honest' />
+        <meta property='og:title' content='TV | Quick and Honest' />
         <meta
           property='og:description'
           content='QUICK AND HONEST is a place where I express my opinion on some of the
