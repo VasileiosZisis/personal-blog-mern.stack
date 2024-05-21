@@ -1,4 +1,5 @@
 import './HirePage.css'
+import { Helmet } from 'react-helmet-async'
 
 const HirePage = () => {
   return (
@@ -36,7 +37,7 @@ const HirePage = () => {
         <article className='article-hire'>
           <p className='article-p-hire'>
             I am a web developer and if you like this website then you can check
-            more of my work at my online portfolio:
+            more of my work at my online portfolio:{' '}
             <a
               className='link-hire'
               href='https://www.vasiliszisis.me/'

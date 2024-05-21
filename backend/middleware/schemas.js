@@ -1,12 +1,36 @@
-import Joi from 'joi';
+import BaseJoi from 'joi';
+import sanitizeHtml from 'sanitize-html';
+
+const extension = (joi) => ({
+  type: 'string',
+  base: joi.string(),
+  messages: {
+    'string.escapeHTML': '{{#label}} must not include HTML tags',
+  },
+  rules: {
+    escapeHTML: {
+      validate(value, helpers) {
+        const clean = sanitizeHtml(value, {
+          allowedTags: [],
+          allowedAttributes: {},
+        });
+        if (clean != value)
+          return helpers.error('string.escapeHTML', { value });
+        return clean;
+      },
+    },
+  },
+});
+
+const Joi = BaseJoi.extend(extension);
 
 const blogpostSchema = Joi.object({
   image: Joi.string()
     .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
     .required(),
-  title: Joi.string().required(),
-  subtitle: Joi.string().required(),
-  content: Joi.string().required(),
+  title: Joi.string().required().escapeHTML(),
+  subtitle: Joi.string().required().escapeHTML(),
+  content: Joi.string().required().escapeHTML(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 
@@ -15,7 +39,7 @@ const validateBlogpost = (req, res, next) => {
   if (error) {
     const msg = error.details.map((el) => el.message).join(',');
     res.status(404);
-    throw new Error('One or more fields are not valid');
+    throw new Error(msg);
   } else {
     next();
   }
@@ -27,9 +51,9 @@ const blogpostEditSchema = Joi.object({
     .allow('')
     .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
     .required(),
-  title: Joi.string().required(),
-  subtitle: Joi.string().required(),
-  content: Joi.string().required(),
+  title: Joi.string().required().escapeHTML(),
+  subtitle: Joi.string().required().escapeHTML(),
+  content: Joi.string().required().escapeHTML(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 
@@ -38,7 +62,7 @@ const validateEditBlogpost = (req, res, next) => {
   if (error) {
     const msg = error.details.map((el) => el.message).join(',');
     res.status(404);
-    throw new Error('One or more fields are not valid');
+    throw new Error(msg);
   } else {
     next();
   }
@@ -48,8 +72,11 @@ const upcomingSchema = Joi.object({
   image: Joi.string()
     .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
     .required(),
-  title: Joi.string().valid('Reading', 'Watching', 'Playing').required(),
-  subtitle: Joi.string().required(),
+  title: Joi.string()
+    .valid('Reading', 'Watching', 'Playing')
+    .required()
+    .escapeHTML(),
+  subtitle: Joi.string().required().escapeHTML(),
 });
 
 const validateUpcoming = (req, res, next) => {
@@ -57,7 +84,7 @@ const validateUpcoming = (req, res, next) => {
   if (error) {
     const msg = error.details.map((el) => el.message).join(',');
     res.status(404);
-    throw new Error('One or more fields are not valid');
+    throw new Error(msg);
   } else {
     next();
   }

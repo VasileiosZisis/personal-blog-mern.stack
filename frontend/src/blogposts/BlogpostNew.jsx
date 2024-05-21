@@ -7,6 +7,7 @@ import Joi from 'joi'
 import { useCreateBlogpostMutation } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 import { Helmet } from 'react-helmet-async'
+import TextEditor from '../components/TextEditor'
 
 const schema = Joi.object({
   image: Joi.object().custom((value, helpers) => {
@@ -122,6 +123,7 @@ const BlogpostNew = () => {
           <label htmlFor='content' name='content'>
             Content
           </label>
+          <TextEditor />
           <textarea rows='10' cols='100' type='text' {...register('content')} />
           <p>{errors.content?.message}</p>
           <label htmlFor='category'>Choose a category:</label>
