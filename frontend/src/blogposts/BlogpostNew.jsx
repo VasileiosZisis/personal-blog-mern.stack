@@ -1,5 +1,5 @@
 import FormContainer from '../components/FormContainer'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
@@ -55,6 +55,7 @@ const BlogpostNew = () => {
     handleSubmit,
     setError,
     clearErrors,
+    control,
     formState: { errors }
   } = useForm({
     resolver: joiResolver(schema)
@@ -123,8 +124,14 @@ const BlogpostNew = () => {
           <label htmlFor='content' name='content'>
             Content
           </label>
-          <TextEditor />
-          <textarea rows='10' cols='100' type='text' {...register('content')} />
+          {/*<textarea rows='10' cols='100' type='text' {...register('content')} /> */}
+          <Controller
+            control={control}
+            name='content'
+            render={({ field: { onChange, value } }) => (
+              <TextEditor onChange={onChange} value={value} />
+            )}
+          />
           <p>{errors.content?.message}</p>
           <label htmlFor='category'>Choose a category:</label>
           <select name='category' {...register('category')}>
