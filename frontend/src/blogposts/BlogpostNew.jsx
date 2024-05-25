@@ -124,7 +124,6 @@ const BlogpostNew = () => {
           <label htmlFor='content' name='content'>
             Content
           </label>
-          {/*<textarea rows='10' cols='100' type='text' {...register('content')} /> */}
           <Controller
             control={control}
             name='content'

@@ -27,6 +27,7 @@ footer a {
   width: 100%;
   display: block;
   transition: all 0.1s ease-in-out;
+  text-decoration: none;
 }
 
 footer a:where(:hover, :focus-visible) {

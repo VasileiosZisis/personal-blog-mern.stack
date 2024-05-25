@@ -1,5 +1,5 @@
 import FormContainer from '../components/FormContainer'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
@@ -12,6 +12,7 @@ import {
 import Loader from '../components/Loader'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
+import TextEditor from '../components/TextEditor'
 
 const schema = Joi.object({
   image: Joi.object().custom((value, helpers) => {
@@ -83,6 +84,7 @@ const BlogpostEdit = () => {
     handleSubmit,
     setError,
     clearErrors,
+    control,
     formState: { errors }
   } = useForm({ resolver: joiResolver(schema) })
 
@@ -173,11 +175,12 @@ const BlogpostEdit = () => {
               <label htmlFor='content' name='content'>
                 Content
               </label>
-              <textarea
-                rows='10'
-                cols='100'
-                type='text'
-                {...register('content')}
+              <Controller
+                control={control}
+                name='content'
+                render={({ field: { onChange, value } }) => (
+                  <TextEditor onChange={onChange} value={value} />
+                )}
               />
               <p>{errors.content?.message}</p>
               <label htmlFor='category'>Choose a category:</label>

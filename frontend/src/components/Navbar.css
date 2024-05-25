@@ -37,6 +37,7 @@ nav {
   color: var(--black-text);
   font-size: 1.1rem;
   transition: all 0.1s ease-in-out;
+  text-decoration: none;
 }
 
 .navlink:where(:hover, :focus-visible) {

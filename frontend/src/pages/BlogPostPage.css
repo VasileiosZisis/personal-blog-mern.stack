@@ -13,11 +13,9 @@
 
 .article-h1 {
   color: var(--black-text);
-  font-size: 4rem;
 }
 
 .article-h2 {
-  font-size: 3rem;
   font-weight: 400;
   color: var(--black-text);
 }

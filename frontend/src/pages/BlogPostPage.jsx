@@ -51,7 +51,10 @@ const BlogpostPage = () => {
               <time className='article-time'>{blogpost.createdAt}</time>
               <hr className='article-hr' />
               <div className='article-p-container'>
-                <p className='article-p'>{blogpost.content}</p>
+                <p
+                  className='article-p'
+                  dangerouslySetInnerHTML={{ __html: blogpost.content }}
+                ></p>
               </div>
             </article>
             <div className='button-container'>

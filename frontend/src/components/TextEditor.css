@@ -1,0 +1,9 @@
+.ql-container {
+  height: auto;
+  background-color: white;
+}
+
+.quill p {
+  color: var(--black-text);
+  font-size: 1rem;
+}
