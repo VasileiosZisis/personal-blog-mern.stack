@@ -1,15 +1,12 @@
 import './HomePage.css'
 import Blogpost from '../components/Blogpost'
 import Loader from '../components/Loader'
-import { useGetBlogpostsQuery } from '../slices/blogpostsApiSlice'
-import { useParams } from 'react-router-dom'
+import { useGetLatestBlogpostsQuery } from '../slices/blogpostsApiSlice'
 import Carousel from '../components/Carousel'
 import { Helmet } from 'react-helmet-async'
 
 const HomePage = () => {
-  const { pageNumber } = useParams()
-  const { data, isLoading, error } = useGetBlogpostsQuery({ skip: pageNumber })
-
+  const { data, isLoading, error } = useGetLatestBlogpostsQuery()
   return (
     <>
       <Helmet>
@@ -54,8 +51,8 @@ const HomePage = () => {
           ) : (
             <div className='section-blogpost'>
               <div className='blogpost-card-container'>
-                {data.blogpostDocs.length > 0 &&
-                  data.blogpostDocs.map(blogpost => (
+                {data.length > 0 &&
+                  data.map(blogpost => (
                     <Blogpost key={blogpost._id} {...blogpost} />
                   ))}
               </div>

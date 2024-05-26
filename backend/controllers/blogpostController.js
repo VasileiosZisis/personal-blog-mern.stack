@@ -3,7 +3,7 @@ import Blogpost from '../models/blogpost.js';
 import { cloudinary } from '../config/cloudinary.js';
 
 const getBlogposts = asyncHandler(async (req, res) => {
-  const limit = 2;
+  const limit = 12;
   const page = Number(req.query.pageNumber || 1);
 
   const keyword = req.query.keyword
@@ -19,8 +19,13 @@ const getBlogposts = asyncHandler(async (req, res) => {
   res.json({ blogpostDocs, page, pages: Math.ceil(total / limit) });
 });
 
+const getLatestBlogposts = asyncHandler(async (req, res) => {
+  const blogpostDocs = await Blogpost.find({}).sort({ createdAt: -1 }).limit(6);
+  res.json(blogpostDocs);
+});
+
 const getAnimeBlogposts = asyncHandler(async (req, res) => {
-  const limit = 16;
+  const limit = 12;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({
@@ -33,7 +38,7 @@ const getAnimeBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getBookBlogposts = asyncHandler(async (req, res) => {
-  const limit = 16;
+  const limit = 12;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'book' })
@@ -44,7 +49,7 @@ const getBookBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getGameBlogposts = asyncHandler(async (req, res) => {
-  const limit = 16;
+  const limit = 12;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'game' })
@@ -55,7 +60,7 @@ const getGameBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getTvBlogposts = asyncHandler(async (req, res) => {
-  const limit = 16;
+  const limit = 12;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'tv' })
@@ -123,6 +128,7 @@ const deleteBlogpost = asyncHandler(async (req, res) => {
 
 export {
   getBlogposts,
+  getLatestBlogposts,
   getAnimeBlogposts,
   getBookBlogposts,
   getGameBlogposts,

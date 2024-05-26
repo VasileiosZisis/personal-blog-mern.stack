@@ -14,6 +14,12 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Blogposts'],
       keepUnusedDataFor: 5,
     }),
+    getLatestBlogposts: builder.query({
+      query: () => ({
+        url: `${BLOGPOSTS_URL}/latest`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
     getAnimeBlogposts: builder.query({
       query: ({ pageNumber }) => ({
         url: `${BLOGPOSTS_URL}/anime`,
@@ -95,6 +101,7 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetBlogpostsQuery,
+  useGetLatestBlogpostsQuery,
   useGetAnimeBlogpostsQuery,
   useGetBookBlogpostsQuery,
   useGetGameBlogpostsQuery,
