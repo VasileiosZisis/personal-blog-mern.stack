@@ -1,5 +1,6 @@
 import FormContainer from '../components/FormContainer'
 import { useForm, Controller } from 'react-hook-form'
+import useFormPersist from 'react-hook-form-persist'
 import { useNavigate, useParams } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
@@ -84,9 +85,17 @@ const BlogpostEdit = () => {
     handleSubmit,
     setError,
     clearErrors,
+    watch,
     control,
     formState: { errors }
   } = useForm({ resolver: joiResolver(schema) })
+
+  useFormPersist('editForm', {
+    watch,
+    setValue,
+    storage: window.localStorage,
+    exclude: ['image']
+  })
 
   const navigate = useNavigate()
 

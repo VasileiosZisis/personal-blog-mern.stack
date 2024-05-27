@@ -1,5 +1,6 @@
 import FormContainer from '../components/FormContainer'
 import { useForm, Controller } from 'react-hook-form'
+import useFormPersist from 'react-hook-form-persist'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
@@ -50,15 +51,25 @@ const schema = Joi.object({
 
 const BlogpostNew = () => {
   const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     setError,
     clearErrors,
     control,
+    watch,
+    setValue,
     formState: { errors }
   } = useForm({
     resolver: joiResolver(schema)
+  })
+
+  useFormPersist('newForm', {
+    watch,
+    setValue,
+    storage: window.localStorage,
+    exclude: ['image']
   })
 
   const [createBlogpost, { isLoading, refetch }] = useCreateBlogpostMutation()
