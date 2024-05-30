@@ -32,6 +32,8 @@ import ErrorPage from './pages/ErrorPage.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
+      <Route path='*' element={<ErrorPage />} />
+
       <Route index path='/' element={<HomePage />} />
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/login' element={<LoginPage />} />
@@ -42,18 +44,17 @@ const router = createBrowserRouter(
         path='/blog/search/:keyword/page/:pageNumber'
         element={<BlogPage />}
       />
+      <Route path='/blog/:id' element={<BlogpostPage />} />
       <Route path='/blog/anime/' element={<AnimeBlogPage />} />
       <Route path='/blog/anime/page/:pageNumber' element={<AnimeBlogPage />} />
       <Route path='/blog/books/' element={<BookBlogPage />} />
-      <Route path='/blog/books/:pageNumber' element={<BookBlogPage />} />
+      <Route path='/blog/books/page/:pageNumber' element={<BookBlogPage />} />
       <Route path='/blog/games/' element={<GameBlogPage />} />
-      <Route path='/blog/games/:pageNumber' element={<GameBlogPage />} />
+      <Route path='/blog/games/page/:pageNumber' element={<GameBlogPage />} />
       <Route path='/blog/tv/' element={<TvBlogPage />} />
-      <Route path='/blog/tv/:pageNumber' element={<TvBlogPage />} />
-      <Route path='/blog/:id' element={<BlogpostPage />} />
+      <Route path='/blog/tv/page/:pageNumber' element={<TvBlogPage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/hire-me' element={<HirePage />} />
-      <Route path='*' element={<ErrorPage />} />
 
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<UpdateProfile />} />

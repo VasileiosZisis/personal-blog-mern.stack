@@ -54,6 +54,10 @@ const TvBlogPage = () => {
           <Loader />
         ) : error ? (
           <div>{error?.data?.message || error.error}</div>
+        ) : data.blogpostDocs.length === 0 ? (
+          <div className='not-found'>
+            <p>NOTHING FOUND</p>
+          </div>
         ) : (
           <section className='section-blogpost'>
             <div className='blogpost-card-container'>
