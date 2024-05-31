@@ -9,7 +9,10 @@ import SearchBox from '../components/SearchBox'
 import { Helmet } from 'react-helmet-async'
 
 const BlogPage = () => {
+  const prodError = import.meta.env.PROD
+
   const { pageNumber, keyword } = useParams()
+
   const { data, isLoading, error } = useGetBlogpostsQuery({
     keyword,
     pageNumber
@@ -57,7 +60,11 @@ const BlogPage = () => {
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <div>{error?.data?.message || error.error}</div>
+          prodError ? (
+            redirect('/error')
+          ) : (
+            <div>{error?.data?.message || error.error}</div>
+          )
         ) : data.blogpostDocs.length === 0 ? (
           <div className='not-found'>
             <p>NOTHING FOUND</p>
