@@ -1,5 +1,5 @@
 import Blogpost from '../components/Blogpost'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, redirect } from 'react-router-dom'
 import { useGetAnimeBlogpostsQuery } from '../slices/blogpostsApiSlice'
 import Loader from '../components/Loader'
 import './BlogPage.css'
@@ -8,7 +8,10 @@ import ReactPaginate from 'react-paginate'
 import { Helmet } from 'react-helmet-async'
 
 const AnimeBlogPage = () => {
+  const prodError = import.meta.env.PROD
+
   const { pageNumber } = useParams()
+
   const { data, isLoading, error } = useGetAnimeBlogpostsQuery({
     pageNumber
   })
@@ -56,7 +59,11 @@ const AnimeBlogPage = () => {
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <div>{error?.data?.message || error.error}</div>
+          prodError ? (
+            redirect('/error')
+          ) : (
+            <div>{error?.data?.message || error.error}</div>
+          )
         ) : data.blogpostDocs.length === 0 ? (
           <div className='not-found'>
             <p>NOTHING FOUND</p>
