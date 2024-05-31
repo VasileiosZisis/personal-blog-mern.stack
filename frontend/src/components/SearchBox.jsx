@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
-import './SearchBOx.css'
+import './SearchBox.css'
 
 const SearchBox = () => {
   const navigate = useNavigate()
