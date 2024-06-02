@@ -23,7 +23,7 @@ app.use(
     crossOriginEmbedderPolicy: false,
     contentSecurityPolicy: {
       directives: {
-        'script-src': ["'self'", 'https: data:'],
+        imgSrc: ["'self'", 'blob:', 'data:', 'https://res.cloudinary.com/'],
       },
     },
   })
