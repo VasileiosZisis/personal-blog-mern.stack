@@ -1,12 +1,14 @@
-import { useParams, useNavigate, Link, redirect } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import {
   useGetBlogpostDetailsQuery,
   useDeleteBlogpostMutation
 } from '../slices/blogpostsApiSlice'
 import './BlogpostPage.css'
+import './ErrorPage.css'
 import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
 import MetaTags from '../components/MetaTags'
+import SearchBox from '../components/SearchBox'
 
 const BlogpostPage = () => {
   const prodErr = import.meta.env.PROD
@@ -14,6 +16,11 @@ const BlogpostPage = () => {
   const { id } = useParams()
 
   const navigate = useNavigate()
+
+  const submitHandler = e => {
+    e.preventDefault()
+    navigate(-1)
+  }
 
   const { data: blogpost, isLoading, error } = useGetBlogpostDetailsQuery(id)
 
@@ -38,7 +45,21 @@ const BlogpostPage = () => {
         <Loader />
       ) : error ? (
         prodErr ? (
-          redirect('/error')
+          <main>
+            <div className='errorpage-h1'>
+              <h1>The page does not exist</h1>
+            </div>
+            <div className='errorpage-p'>
+              <p>Make a new search</p>
+            </div>
+            <SearchBox />
+            <div className='errorpage-p'>
+              <p>or</p>
+            </div>
+            <div className='errorpage-button'>
+              <button onClick={submitHandler}>Go Back</button>
+            </div>
+          </main>
         ) : (
           <div>{error?.data?.message || error.error}</div>
         )
