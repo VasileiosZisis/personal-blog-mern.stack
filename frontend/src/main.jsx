@@ -35,7 +35,7 @@ const router = createBrowserRouter(
       <Route path='*' element={<ErrorPage />} />
 
       <Route index path='/' element={<HomePage />} />
-      <Route path='/register' element={<RegisterPage />} />
+      {/* <Route path='/register' element={<RegisterPage />} /> */}
       <Route path='/login' element={<LoginPage />} />
       <Route path='/blog/' element={<BlogPage />} />
       <Route path='/blog/search/:keyword' element={<BlogPage />} />

@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate, Link, redirect } from 'react-router-dom'
 import {
   useGetBlogpostDetailsQuery,
   useDeleteBlogpostMutation
@@ -9,6 +9,8 @@ import { toast } from 'react-toastify'
 import MetaTags from '../components/MetaTags'
 
 const BlogpostPage = () => {
+  const prodErr = import.meta.env.PROD
+
   const { id } = useParams()
 
   const navigate = useNavigate()
@@ -35,7 +37,11 @@ const BlogpostPage = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <div>{error?.data?.message || error.error}</div>
+        prodErr ? (
+          redirect('./error')
+        ) : (
+          <div>{error?.data?.message || error.error}</div>
+        )
       ) : (
         <>
           <MetaTags
