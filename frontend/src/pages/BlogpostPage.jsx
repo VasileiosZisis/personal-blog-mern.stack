@@ -38,7 +38,7 @@ const BlogpostPage = () => {
         <Loader />
       ) : error ? (
         prodErr ? (
-          redirect('./error')
+          redirect('/error')
         ) : (
           <div>{error?.data?.message || error.error}</div>
         )

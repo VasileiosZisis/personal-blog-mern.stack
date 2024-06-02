@@ -18,7 +18,7 @@ connectDB();
 
 const app = express();
 
-app.use(helmet({ contentSecurityPolicy: false }));
+app.use(helmet({ crossOriginEmbedderPolicy: false }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
