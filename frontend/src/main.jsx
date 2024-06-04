@@ -55,7 +55,6 @@ const router = createBrowserRouter(
       <Route path='/blog/tv/page/:pageNumber' element={<TvBlogPage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/hire-me' element={<HirePage />} />
-      <Route path='/error' element={<ErrorPage />} />
 
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<UpdateProfile />} />
