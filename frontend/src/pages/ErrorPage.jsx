@@ -41,18 +41,7 @@ const ErrorPage = () => {
         <meta property='og:image:width' content='900' />
         <meta property='og:image:height' content='296' />
       </Helmet>
-      <head>
-        {/* Google tag (gtag.js) */}
-        <script
-          async
-          src='https://www.googletagmanager.com/gtag/js?id=G-MYB663Q6FK'
-        ></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'G-MYB663Q6FK');
-        </script>
-      </head>
+
       <main>
         <div className='errorpage-h1'>
           <h1>The page does not exist</h1>

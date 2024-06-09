@@ -70,18 +70,7 @@ const BlogpostPage = () => {
             metadescription={blogpost.title + ' ' + blogpost.subtitle}
             metaurl={id}
           />
-          <head>
-            {/* Google tag (gtag.js) */}
-            <script
-              async
-              src='https://www.googletagmanager.com/gtag/js?id=G-MYB663Q6FK'
-            ></script>
-            <script>
-              window.dataLayer = window.dataLayer || []; function gtag()
-              {dataLayer.push(arguments)}
-              gtag('js', new Date()); gtag('config', 'G-MYB663Q6FK');
-            </script>
-          </head>
+
           <main>
             <article className='article'>
               <img className='article-img' src={blogpost.image.url} />
