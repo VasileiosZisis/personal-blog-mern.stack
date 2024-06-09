@@ -30,7 +30,7 @@ app.use(
           'https://res.cloudinary.com/',
           'www.googletagmanager.com',
         ],
-        scriptSrc: ['unsafe-inline', 'self', 'www.googletagmanager.com'],
+        scriptSrc: ["'unsafe-inline'", "'self'", 'www.googletagmanager.com'],
         connectSrc: ['www.googletagmanager.com'],
       },
     },
