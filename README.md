@@ -4,8 +4,12 @@ Visit the website [here](https://www.quickandhonest.com/)
 
 ### A blog website
 
-This app is created with mongoDB, expressjs, react and nodejs. I have disabled the registration
-in the live website. Will add the ability for users to create comments, when there will be enough content.
+This app is created with mongoDB, expressjs, react and nodejs.
+
+Still to do:
+
+- Slug instead of id for the url
+- User comments
 
 It includes the following:
 
