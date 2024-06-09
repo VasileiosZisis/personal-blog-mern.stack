@@ -23,7 +23,15 @@ app.use(
     crossOriginEmbedderPolicy: false,
     contentSecurityPolicy: {
       directives: {
-        imgSrc: ["'self'", 'blob:', 'data:', 'https://res.cloudinary.com/'],
+        imgSrc: [
+          "'self'",
+          'blob:',
+          'data:',
+          'https://res.cloudinary.com/',
+          'www.googletagmanager.com',
+        ],
+        scriptSrc: ['unsafe-inline', 'self', 'www.googletagmanager.com'],
+        connectSrc: ['www.googletagmanager.com'],
       },
     },
   })
