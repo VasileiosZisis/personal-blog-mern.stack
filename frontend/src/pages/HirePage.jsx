@@ -30,6 +30,18 @@ const HirePage = () => {
         <meta property='og:image:width' content='900' />
         <meta property='og:image:height' content='296' />
       </Helmet>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=G-MYB663Q6FK'
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'G-MYB663Q6FK');
+        </script>
+      </head>
       <main>
         <section className='hire-image'>
           <img src='https://res.cloudinary.com/dmdbza74n/image/upload/v1715279602/MyBlog/gallery_tkhsi3.webp' />
