@@ -1,8 +1,10 @@
 footer {
   padding: 2rem 0.5rem;
   background-color: var(--grey-light);
-  display: grid;
+  display: flex;
   place-content: center;
+  gap: 1rem;
+  font-size: 1.1rem;
 }
 
 footer ul {
@@ -18,21 +20,19 @@ footer ul {
 }
 
 footer li {
-  font-size: 1.1rem;
   text-transform: uppercase;
 }
 
 footer a {
   color: var(--black-text);
   width: 100%;
-  display: block;
   transition: all 0.1s ease-in-out;
   text-decoration: none;
 }
 
 footer a:where(:hover, :focus-visible) {
-  color: var(--grey-light);
-  background-color: var(--black-text);
+  color: var(--grey-dark);
+  text-decoration: underline;
 }
 
 .logout {
@@ -43,4 +43,15 @@ footer a:where(:hover, :focus-visible) {
 .logout:where(:hover, :focus-visible) {
   color: var(--grey-light);
   background-color: var(--black-text);
+}
+
+footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+footer div > * {
+  flex: 1;
+  min-width: fit-content;
 }

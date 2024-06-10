@@ -4,12 +4,15 @@ Visit the website [here](https://www.quickandhonest.com/)
 
 ### A blog website
 
-This app is created with mongoDB, expressjs, react and nodejs.
+This app is created with mongoDB, expressjs, react and nodejs. Please note that registration is disabled.
+
+![blog](assets/blog.webp)
 
 Still to do:
 
 - Slug instead of id for the url
 - User comments
+- Reset Password functionality
 
 It includes the following:
 

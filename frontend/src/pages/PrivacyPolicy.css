@@ -1,0 +1,22 @@
+.privacy-section {
+  margin: 2rem 5%;
+}
+
+.privacy-section > * {
+  padding: 0.5rem;
+}
+
+.privacy-section h1,
+h2 {
+  font-size: 1.5rem;
+}
+
+.privacy-section a {
+  color: var(--black-text);
+  transition: all 0.1s ease-in-out;
+}
+
+.privacy-section a:where(:hover, :focus-visible) {
+  color: var(--grey-text);
+  text-decoration: none;
+}
