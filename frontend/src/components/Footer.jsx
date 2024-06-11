@@ -63,7 +63,9 @@ const Footer = () => {
         )}
       </ul>
       <div className='footer-div-mid'>
-        <Link to='/privacy-policy'>Privacy Policy</Link>
+        <div>
+          <Link to='/privacy-policy'>Privacy Policy</Link>
+        </div>
         <p>
           Created by&nbsp;
           <a href='https://www.vasiliszisis.me/' target='_blank'>

@@ -31,11 +31,6 @@ app.use(
           'www.googletagmanager.com',
         ],
         scriptSrc: ["'unsafe-inline'", "'self'", 'www.googletagmanager.com'],
-        connectSrc: [
-          "'self'",
-          'https://www.googletagmanager.com/gtag/js?id=G-MYB663Q6FK',
-          'https://*.googletagmanager.com',
-        ],
       },
     },
   })
