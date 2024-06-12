@@ -9,14 +9,14 @@ const PrivacyPolicy = () => {
         <meta name='robots' content='noindex' />
       </Helmet>
       <section className='privacy-section'>
-        <h1>Quick and Honest - PRIVACY POLICY</h1>
+        <h1 className='privacy-policy-h1'>Quick and Honest - PRIVACY POLICY</h1>
         <p>
           As the owner of this website (the “Site”), Quick and Honest(“we” or
           “us”) understand that your privacy is of critical importance. This
           Privacy Policy describes what information we collect from you via the
           Site and how we use and disclose such information.
         </p>
-        <h2>Our Use of Cookies</h2>
+        <h2 className='privacy-policy-h2'>Our Use of Cookies</h2>
         <p>
           A cookie is a file containing an identifier (a string of letters and
           numbers) that is sent by a web server to a web browser and is stored

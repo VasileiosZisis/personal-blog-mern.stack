@@ -10,7 +10,33 @@ const extension = (joi) => ({
   rules: {
     escapeHTML: {
       validate(value, helpers) {
-        const clean = sanitizeHtml(value);
+        const clean = sanitizeHtml(value, {
+          allowedClasses: {
+            '*': [
+              'ql-align-right',
+              'ql-align-center',
+              'ql-align-justify',
+              'ql-code-block',
+              'ql-code-block-container',
+              'ql-syntax',
+              'ql-direction-rtl',
+              'ql-font-serif',
+              'ql-font-monospace',
+              'ql-formula',
+              'ql-indent-1',
+              'ql-indent-2',
+              'ql-indent-3',
+              'ql-indent-4',
+              'ql-indent-5',
+              'ql-indent-6',
+              'ql-indent-7',
+              'ql-indent-8',
+              'ql-size-small',
+              'ql-size-large',
+              'ql-size-huge',
+            ],
+          },
+        });
         if (clean != value)
           return helpers.error('string.escapeHTML', { value });
         return clean;
@@ -27,7 +53,7 @@ const blogpostSchema = Joi.object({
     .required(),
   title: Joi.string().required().escapeHTML(),
   subtitle: Joi.string().required().escapeHTML(),
-  content: Joi.string().required().escapeHTML(),
+  content: Joi.string().required(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 
@@ -50,7 +76,7 @@ const blogpostEditSchema = Joi.object({
     .required(),
   title: Joi.string().required().escapeHTML(),
   subtitle: Joi.string().required().escapeHTML(),
-  content: Joi.string().required().escapeHTML(),
+  content: Joi.string().required(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 

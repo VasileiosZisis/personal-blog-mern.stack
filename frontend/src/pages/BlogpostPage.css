@@ -1,4 +1,6 @@
 .article {
+  display: grid;
+  place-content: center;
   text-align: center;
   margin-top: 2rem;
 }
@@ -35,16 +37,14 @@
 }
 
 .article-p-container {
-  text-align: center;
+  text-align: start;
   display: grid;
   place-content: center;
-}
-
-.article-p {
+  width: 65%;
+  margin: auto;
   color: var(--black-text);
   font-size: 1.1rem;
-  margin: 2rem 2rem;
-  max-width: 100ch;
+  word-wrap: break-word;
 }
 
 .button-container {

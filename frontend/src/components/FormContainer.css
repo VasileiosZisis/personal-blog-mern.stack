@@ -21,6 +21,7 @@
 
 .form-container input {
   padding: 2px;
+  width: 300px;
 }
 
 .form-container select {

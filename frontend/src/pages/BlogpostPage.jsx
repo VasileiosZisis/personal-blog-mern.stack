@@ -39,6 +39,9 @@ const BlogpostPage = () => {
     }
   }
 
+  // const date = new Date(blogpost.createdAt)
+  // const newDate = date.toLocaleDateString()
+
   return (
     <>
       {isLoading ? (
@@ -78,12 +81,10 @@ const BlogpostPage = () => {
               <h2 className='article-h2'>{blogpost.subtitle}</h2>
               <time className='article-time'>{blogpost.createdAt}</time>
               <hr className='article-hr' />
-              <div className='article-p-container'>
-                <p
-                  className='article-p'
-                  dangerouslySetInnerHTML={{ __html: blogpost.content }}
-                ></p>
-              </div>
+              <div
+                className='article-p-container'
+                dangerouslySetInnerHTML={{ __html: blogpost.content }}
+              ></div>
             </article>
             <div className='button-container'>
               <Link to={`/blog/${id}/edit`} className='article-link'>
