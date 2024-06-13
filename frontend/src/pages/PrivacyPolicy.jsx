@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async'
 import './PrivacyPolicy.css'
+import { Helmet } from 'react-helmet-async'
 
 const PrivacyPolicy = () => {
   return (

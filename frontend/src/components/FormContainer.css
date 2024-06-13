@@ -29,7 +29,22 @@
   padding: 5px;
 }
 
-.form-container button {
+.btn-cancel {
+  padding-block: 0.6rem;
+  padding-inline: 1.2rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  background-color: var(--error);
+  color: var(--grey-light);
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-cancel:where(:hover, :focus-visible) {
+  background-color: var(--grey-medium);
+  color: var(--black-text);
+}
+
+.btn-submit {
   padding-block: 0.6rem;
   padding-inline: 1.2rem;
   font-size: 1.25rem;

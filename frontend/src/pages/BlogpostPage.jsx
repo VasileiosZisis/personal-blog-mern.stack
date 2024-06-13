@@ -79,7 +79,9 @@ const BlogpostPage = () => {
               <img className='article-img' src={blogpost.image.url} />
               <h1 className='article-h1'>{blogpost.title}</h1>
               <h2 className='article-h2'>{blogpost.subtitle}</h2>
-              <time className='article-time'>{blogpost.createdAt}</time>
+              <time className='article-time'>
+                {new Date(blogpost.createdAt).toLocaleDateString()}
+              </time>
               <hr className='article-hr' />
               <div
                 className='article-p-container'

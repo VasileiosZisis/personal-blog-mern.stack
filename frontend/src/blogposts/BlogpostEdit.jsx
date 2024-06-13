@@ -90,6 +90,11 @@ const BlogpostEdit = () => {
 
   const navigate = useNavigate()
 
+  const submitHandler = e => {
+    e.preventDefault()
+    navigate(-1)
+  }
+
   const onFormSubmit = async data => {
     if (data.image[0]) {
       const formData = new FormData()
@@ -111,7 +116,6 @@ const BlogpostEdit = () => {
       }
     } else {
       try {
-        // console.log(data)
         await updateBlogpost({ ...data, _id: id }).unwrap()
         navigate(`/blog/${id}`)
         toast.success('Blogpost has been updated')
@@ -191,7 +195,12 @@ const BlogpostEdit = () => {
                 <option value='book'>Book</option>
               </select>
               <p>{errors.category?.message}</p>
-              <button type='submit'>Submit</button>
+              <button className='btn-cancel' onClick={submitHandler}>
+                Cancel
+              </button>
+              <button className='btn-submit' type='submit'>
+                Submit
+              </button>
             </form>
           </>
         )}
