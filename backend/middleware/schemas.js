@@ -55,7 +55,7 @@ const blogpostSchema = Joi.object({
     .required(),
   title: Joi.string().required().escapeHTML(),
   subtitle: Joi.string().required().escapeHTML(),
-  content: Joi.string().required().escapeHTML(),
+  content: Joi.string().required(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 
