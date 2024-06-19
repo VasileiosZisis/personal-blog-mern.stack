@@ -4,7 +4,6 @@ footer {
   display: flex;
   place-content: center;
   gap: 1rem;
-  font-size: 1.1rem;
 }
 
 footer ul {
@@ -25,7 +24,6 @@ footer li {
 
 footer a {
   color: var(--black-text);
-  width: 100%;
   transition: all 0.1s ease-in-out;
   text-decoration: none;
 }
@@ -55,4 +53,10 @@ footer div {
 footer div > * {
   flex: 1;
   min-width: fit-content;
+}
+
+@media only screen and (max-width: 600px) {
+  footer {
+    font-size: 0.9rem;
+  }
 }

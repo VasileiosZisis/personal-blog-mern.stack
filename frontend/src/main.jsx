@@ -29,6 +29,7 @@ import AboutPage from './pages/AboutPage.jsx'
 import HirePage from './pages/HirePage.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+import Disclaimer from './pages/Disclaimer.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
       <Route path='/about' element={<AboutPage />} />
       <Route path='/hire-me' element={<HirePage />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+      <Route path='/disclaimer' element={<Disclaimer />} />
 
       <Route path='' element={<PrivateRoute />}>
         <Route path='/profile' element={<UpdateProfile />} />

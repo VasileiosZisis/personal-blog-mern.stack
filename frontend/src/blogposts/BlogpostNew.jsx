@@ -85,6 +85,7 @@ const BlogpostNew = () => {
     formData.append('category', data.category)
     try {
       await createBlogpost(formData).unwrap()
+      window.localStorage.clear()
       navigate('/blog')
       toast.success('Blogpost has been created')
       refetch()
@@ -152,7 +153,9 @@ const BlogpostNew = () => {
             <option value='book'>Book</option>
           </select>
           <p>{errors.category?.message}</p>
-          <button type='submit'>Submit</button>
+          <button className='btn-submit' type='submit'>
+            Submit
+          </button>
           {isLoading && <Loader />}
         </form>
       </FormContainer>

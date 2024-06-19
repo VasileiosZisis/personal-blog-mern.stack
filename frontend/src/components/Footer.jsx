@@ -66,6 +66,9 @@ const Footer = () => {
         <div>
           <Link to='/privacy-policy'>Privacy Policy</Link>
         </div>
+        <div>
+          <Link to='/disclaimer'>Disclaimer</Link>
+        </div>
         <p>
           Created by&nbsp;
           <a href='https://www.vasiliszisis.me/' target='_blank'>

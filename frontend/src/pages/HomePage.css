@@ -43,6 +43,12 @@
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .gallery-image img {
+    width: calc(100vw - 2%);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .gallery-image {
     margin: 0 1rem 1rem 1rem;

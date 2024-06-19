@@ -1,0 +1,11 @@
+.disclaimer-section {
+  margin: 2rem 5%;
+}
+
+.disclaimer-section > * {
+  padding: 0.5rem;
+}
+
+.disclaimer-h1 {
+  font-size: 1.5rem;
+}
