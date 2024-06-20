@@ -63,7 +63,9 @@ const LoginPage = () => {
           </label>
           <input type='password' {...register('password')} />
           <p>{errors.password?.message}</p>
-          <button type='submit'>Submit</button>
+          <button className='btn-submit' type='submit'>
+            Submit
+          </button>
           {isLoading && <Loader />}
         </form>
       </FormContainer>

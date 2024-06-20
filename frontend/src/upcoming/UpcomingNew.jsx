@@ -1,5 +1,6 @@
 import FormContainer from '../components/FormContainer'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { toast } from 'react-toastify'
 import Joi from 'joi'
@@ -38,6 +39,8 @@ const schema = Joi.object({
 })
 
 const UpcomingNew = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -59,6 +62,7 @@ const UpcomingNew = () => {
     formData.append('subtitle', data.subtitle)
     try {
       await createUpcoming(formData).unwrap()
+      navigate('/blog')
       toast.success('Card has been created')
       refetch()
     } catch (err) {
@@ -105,7 +109,9 @@ const UpcomingNew = () => {
           </label>
           <input type='text' {...register('subtitle')} />
           <p>{errors.subtitle?.message}</p>
-          <button type='submit'>Submit</button>
+          <button className='btn-submit' type='submit'>
+            Submit
+          </button>
           {isLoading && <Loader />}
         </form>
       </FormContainer>

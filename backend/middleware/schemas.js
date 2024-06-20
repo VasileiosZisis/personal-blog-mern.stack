@@ -11,8 +11,6 @@ const extension = (joi) => ({
     escapeHTML: {
       validate(value, helpers) {
         const clean = sanitizeHtml(value, {
-          allowedTags: [],
-          allowedAttributes: {},
           allowedClasses: {
             '*': [
               'ql-align-right',

@@ -9,6 +9,7 @@ import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
 import MetaTags from '../components/MetaTags'
 import SearchBox from '../components/SearchBox'
+import { ref } from 'joi'
 
 const BlogpostPage = () => {
   const prodErr = import.meta.env.PROD
@@ -38,9 +39,6 @@ const BlogpostPage = () => {
       }
     }
   }
-
-  // const date = new Date(blogpost.createdAt)
-  // const newDate = date.toLocaleDateString()
 
   return (
     <>

@@ -1,4 +1,5 @@
 import FormContainer from '../components/FormContainer'
+import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import useFormPersist from 'react-hook-form-persist'
 import { useNavigate } from 'react-router-dom'
@@ -53,6 +54,7 @@ const BlogpostNew = () => {
   const navigate = useNavigate()
 
   const {
+    reset,
     register,
     handleSubmit,
     setError,
@@ -60,7 +62,8 @@ const BlogpostNew = () => {
     control,
     watch,
     setValue,
-    formState: { errors }
+    formState,
+    formState: { errors, isSubmitSuccessful }
   } = useForm({
     resolver: joiResolver(schema)
   })
@@ -85,7 +88,7 @@ const BlogpostNew = () => {
     formData.append('category', data.category)
     try {
       await createBlogpost(formData).unwrap()
-      window.localStorage.clear()
+      reset({ ...formData })
       navigate('/blog')
       toast.success('Blogpost has been created')
       refetch()

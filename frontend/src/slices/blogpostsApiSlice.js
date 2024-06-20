@@ -96,6 +96,7 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
         url: `${BLOGPOSTS_URL}/${_id}`,
         method: 'delete',
       }),
+      invalidatesTags: ['Blogposts'],
     }),
   }),
 });
