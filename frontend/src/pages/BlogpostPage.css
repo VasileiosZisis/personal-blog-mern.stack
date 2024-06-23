@@ -47,7 +47,7 @@
   word-wrap: break-word;
 }
 
-p:first-of-type::first-letter {
+.ql-editor p:first-of-type::first-letter {
   font-size: 1.7rem;
   line-height: 1;
 }
