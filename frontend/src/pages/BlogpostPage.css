@@ -47,6 +47,11 @@
   word-wrap: break-word;
 }
 
+p:first-of-type::first-letter {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
 .button-container {
   display: flex;
   flex-direction: row;

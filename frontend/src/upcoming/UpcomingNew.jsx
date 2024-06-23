@@ -62,7 +62,7 @@ const UpcomingNew = () => {
     formData.append('subtitle', data.subtitle)
     try {
       await createUpcoming(formData).unwrap()
-      navigate('/blog')
+      navigate('/')
       toast.success('Card has been created')
       refetch()
     } catch (err) {
