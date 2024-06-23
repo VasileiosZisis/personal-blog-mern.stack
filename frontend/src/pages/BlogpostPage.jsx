@@ -9,7 +9,6 @@ import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
 import MetaTags from '../components/MetaTags'
 import SearchBox from '../components/SearchBox'
-import { ref } from 'joi'
 
 const BlogpostPage = () => {
   const prodErr = import.meta.env.PROD
@@ -81,10 +80,14 @@ const BlogpostPage = () => {
                 {new Date(blogpost.createdAt).toLocaleDateString()}
               </time>
               <hr className='article-hr' />
-              <div
-                className='article-p-container'
-                dangerouslySetInnerHTML={{ __html: blogpost.content }}
-              ></div>
+              <div className='article-p-container '>
+                <div className='ql-snow'>
+                  <div
+                    className='ql-editor'
+                    dangerouslySetInnerHTML={{ __html: blogpost.content }}
+                  ></div>
+                </div>
+              </div>
             </article>
             <div className='button-container'>
               <Link to={`/blog/${id}/edit`} className='article-link'>
