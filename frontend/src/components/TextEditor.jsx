@@ -4,12 +4,11 @@ import './TextEditor.css'
 
 const modules = {
   toolbar: [
-    [{ header: [3, 4, false] }],
     ['bold', 'italic', 'underline', 'strike'],
     ['blockquote'],
     [{ list: 'ordered' }, { list: 'bullet' }],
     [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
-    ['link', 'video'],
+    ['link'],
     ['clean']
   ]
 }

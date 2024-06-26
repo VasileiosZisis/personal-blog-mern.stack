@@ -9,6 +9,7 @@ import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
 import MetaTags from '../components/MetaTags'
 import SearchBox from '../components/SearchBox'
+import DOMPurify from 'dompurify'
 
 const BlogpostPage = () => {
   const prodErr = import.meta.env.PROD
@@ -84,7 +85,9 @@ const BlogpostPage = () => {
                 <div className='ql-snow'>
                   <div
                     className='ql-editor'
-                    dangerouslySetInnerHTML={{ __html: blogpost.content }}
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(blogpost.content)
+                    }}
                   ></div>
                 </div>
               </div>

@@ -1,16 +1,33 @@
 import BaseJoi from 'joi';
 import sanitizeHtml from 'sanitize-html';
+import * as cheerio from 'cheerio';
 
 const extension = (joi) => ({
   type: 'string',
   base: joi.string(),
   messages: {
-    'string.escapeHTML': '{{#label}} must not include HTML tags',
+    'string.escapeHTML': '{{#label}} constains unsafe HTML tag',
   },
   rules: {
     escapeHTML: {
       validate(value, helpers) {
         const clean = sanitizeHtml(value, {
+          allowedTags: [
+            'blockquote',
+            'p',
+            'a',
+            'ul',
+            'ol',
+            'li',
+            'b',
+            'em',
+            'strike',
+            'u',
+            'br',
+          ],
+          allowedAttributes: {
+            a: ['href', 'target', 'rel'],
+          },
           allowedClasses: {
             '*': [
               'ql-align-right',
@@ -37,9 +54,10 @@ const extension = (joi) => ({
             ],
           },
         });
-        if (clean != value)
+        const cl = cheerio.load(clean, null, false);
+        if (cl.html() !== value)
           return helpers.error('string.escapeHTML', { value });
-        return clean;
+        return cl.html();
       },
     },
   },
@@ -53,7 +71,7 @@ const blogpostSchema = Joi.object({
     .required(),
   title: Joi.string().required().escapeHTML(),
   subtitle: Joi.string().required().escapeHTML(),
-  content: Joi.string().required(),
+  content: Joi.string().required().escapeHTML(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 
@@ -76,7 +94,7 @@ const blogpostEditSchema = Joi.object({
     .required(),
   title: Joi.string().required().escapeHTML(),
   subtitle: Joi.string().required().escapeHTML(),
-  content: Joi.string().required(),
+  content: Joi.string().required().escapeHTML(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
 

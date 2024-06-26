@@ -62,7 +62,6 @@ const BlogpostNew = () => {
     control,
     watch,
     setValue,
-    formState,
     formState: { errors, isSubmitSuccessful }
   } = useForm({
     resolver: joiResolver(schema)
