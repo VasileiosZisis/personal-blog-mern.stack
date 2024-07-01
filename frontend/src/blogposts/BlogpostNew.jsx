@@ -74,7 +74,7 @@ const BlogpostNew = () => {
     exclude: ['image']
   })
 
-  const [createBlogpost, { isLoading, refetch }] = useCreateBlogpostMutation()
+  const [createBlogpost, { isLoading }] = useCreateBlogpostMutation()
 
   const onFormSubmit = async data => {
     const formData = new FormData()
@@ -90,7 +90,6 @@ const BlogpostNew = () => {
       reset({ ...formData })
       navigate('/blog')
       toast.success('Blogpost has been created')
-      refetch()
     } catch (err) {
       toast.error(err?.data?.message || err.error)
     }

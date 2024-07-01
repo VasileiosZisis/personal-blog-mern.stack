@@ -51,7 +51,7 @@ const UpcomingNew = () => {
     resolver: joiResolver(schema)
   })
 
-  const [createUpcoming, { isLoading, refetch }] = useCreateUpcomingMutation()
+  const [createUpcoming, { isLoading }] = useCreateUpcomingMutation()
 
   const onFormSubmit = async data => {
     const formData = new FormData()
@@ -64,7 +64,6 @@ const UpcomingNew = () => {
       await createUpcoming(formData).unwrap()
       navigate('/')
       toast.success('Card has been created')
-      refetch()
     } catch (err) {
       toast.error(err?.data?.message || err.error)
     }
