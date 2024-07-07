@@ -42,7 +42,6 @@ const UpcomingShow = () => {
             {data.length > 0 &&
               data.map(upcoming => (
                 <UpcomingCard
-                  id={upcoming._id}
                   key={upcoming._id}
                   title={upcoming.title}
                   subtitle={upcoming.subtitle}

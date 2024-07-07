@@ -62,6 +62,7 @@ const BlogpostNew = () => {
     control,
     watch,
     setValue,
+    formState,
     formState: { errors, isSubmitSuccessful }
   } = useForm({
     resolver: joiResolver(schema)
@@ -94,6 +95,12 @@ const BlogpostNew = () => {
       toast.error(err?.data?.message || err.error)
     }
   }
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ ...data })
+    }
+  }, [formState, reset])
 
   return (
     <>

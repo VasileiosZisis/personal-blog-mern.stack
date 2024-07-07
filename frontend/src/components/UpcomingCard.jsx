@@ -8,7 +8,6 @@ const UpcomingCard = ({ id, title, subtitle, image, isForm, onClick }) => {
           X
         </button>
         <p className='card-title'>{title}</p>
-        <p className='card-title'>{id}</p>
         <p className='card-subtitle'>{subtitle}</p>
         <hr className='card-hr' />
         <img className='card-img' src={image.url} />
