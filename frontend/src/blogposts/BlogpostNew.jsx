@@ -98,7 +98,7 @@ const BlogpostNew = () => {
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      reset({ ...data })
+      reset()
     }
   }, [formState, reset])
 
