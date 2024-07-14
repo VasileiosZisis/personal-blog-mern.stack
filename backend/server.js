@@ -23,6 +23,7 @@ app.use(
     crossOriginEmbedderPolicy: false,
     contentSecurityPolicy: {
       directives: {
+        defaultSrc: ["'self'"],
         imgSrc: [
           "'self'",
           'blob:',
@@ -31,6 +32,7 @@ app.use(
           'www.googletagmanager.com',
         ],
         scriptSrc: ["'unsafe-inline'", "'self'", 'www.googletagmanager.com'],
+        connectSrc: ["'self'", 'https://region1.google-analytics.com'],
       },
     },
   })

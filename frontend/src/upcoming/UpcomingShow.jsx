@@ -15,7 +15,7 @@ const UpcomingShow = () => {
     useDeleteUpcomingMutation()
 
   const deleteHandler = async id => {
-    if (window.confirm(id)) {
+    if (window.confirm('Are you sure?')) {
       try {
         await deleteUpcoming(id)
         toast.success('Card has been deleted')

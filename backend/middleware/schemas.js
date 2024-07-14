@@ -69,8 +69,8 @@ const blogpostSchema = Joi.object({
   image: Joi.string()
     .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
     .required(),
-  title: Joi.string().required().escapeHTML(),
-  subtitle: Joi.string().required().escapeHTML(),
+  title: Joi.string().max(40).required().escapeHTML(),
+  subtitle: Joi.string().max(40).required().escapeHTML(),
   content: Joi.string().required().escapeHTML(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
@@ -92,8 +92,8 @@ const blogpostEditSchema = Joi.object({
     .allow('')
     .pattern(/[^\s]+(.*?).(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/)
     .required(),
-  title: Joi.string().required().escapeHTML(),
-  subtitle: Joi.string().required().escapeHTML(),
+  title: Joi.string().max(40).required().escapeHTML(),
+  subtitle: Joi.string().max(40).required().escapeHTML(),
   content: Joi.string().required().escapeHTML(),
   category: Joi.string().valid('game', 'tv', 'book', 'anime').required(),
 });
