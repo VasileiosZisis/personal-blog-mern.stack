@@ -3,7 +3,7 @@ import Blogpost from '../models/blogpost.js';
 import { cloudinary } from '../config/cloudinary.js';
 
 const getBlogposts = asyncHandler(async (req, res) => {
-  const limit = 12;
+  const limit = 15;
   const page = Number(req.query.pageNumber || 1);
 
   const keyword = req.query.keyword
@@ -20,12 +20,12 @@ const getBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getLatestBlogposts = asyncHandler(async (req, res) => {
-  const blogpostDocs = await Blogpost.find({}).sort({ createdAt: -1 }).limit(6);
+  const blogpostDocs = await Blogpost.find({}).sort({ createdAt: -1 }).limit(9);
   res.json(blogpostDocs);
 });
 
 const getAnimeBlogposts = asyncHandler(async (req, res) => {
-  const limit = 12;
+  const limit = 15;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({
@@ -38,7 +38,7 @@ const getAnimeBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getBookBlogposts = asyncHandler(async (req, res) => {
-  const limit = 12;
+  const limit = 15;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'book' })
@@ -49,7 +49,7 @@ const getBookBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getGameBlogposts = asyncHandler(async (req, res) => {
-  const limit = 12;
+  const limit = 15;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'game' })
@@ -60,7 +60,7 @@ const getGameBlogposts = asyncHandler(async (req, res) => {
 });
 
 const getTvBlogposts = asyncHandler(async (req, res) => {
-  const limit = 12;
+  const limit = 15;
   const page = Number(req.query.pageNumber || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'tv' })
