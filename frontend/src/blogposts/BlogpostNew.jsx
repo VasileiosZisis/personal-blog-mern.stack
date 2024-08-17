@@ -32,16 +32,13 @@ const schema = Joi.object({
       return helpers.message('Image is required')
     }
   }),
-  title: Joi.string()
-    .max(40)
-    .required()
-    .messages({
-      'string.empty': 'This field is required',
-      'string.max': '40 characters maximum allowed'
-    }),
-  subtitle: Joi.string().max(40).required().messages({
+  title: Joi.string().max(45).required().messages({
     'string.empty': 'This field is required',
-    'string.max': '40 characters maximum allowed'
+    'string.max': '45 characters maximum allowed'
+  }),
+  subtitle: Joi.string().max(45).required().messages({
+    'string.empty': 'This field is required',
+    'string.max': '45 characters maximum allowed'
   }),
   content: Joi.string()
     .required()
