@@ -95,20 +95,19 @@ const BlogpostPage = () => {
                 </div>
               </div>
             </article>
-            {userInfo &&
-              userInfo.isAdmin(
-                <div className='button-container'>
-                  <Link to={`/blog/${id}/edit`} className='article-link'>
-                    <button className='article-button edit'>Edit</button>
-                  </Link>
-                  <button
-                    className='article-button delete'
-                    onClick={() => deleteHandler(id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
+            {userInfo && userInfo.isAdmin && (
+              <div className='button-container'>
+                <Link to={`/blog/${id}/edit`} className='article-link'>
+                  <button className='article-button edit'>Edit</button>
+                </Link>
+                <button
+                  className='article-button delete'
+                  onClick={() => deleteHandler(id)}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
             {loadingDelete && <Loader />}
           </main>
         </>
