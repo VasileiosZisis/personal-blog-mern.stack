@@ -1,4 +1,5 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
   useGetBlogpostDetailsQuery,
   useDeleteBlogpostMutation
@@ -13,6 +14,8 @@ import DOMPurify from 'dompurify'
 
 const BlogpostPage = () => {
   const prodErr = import.meta.env.PROD
+
+  const { userInfo } = useSelector(state => state.auth)
 
   const { id } = useParams()
 
@@ -92,17 +95,20 @@ const BlogpostPage = () => {
                 </div>
               </div>
             </article>
-            <div className='button-container'>
-              <Link to={`/blog/${id}/edit`} className='article-link'>
-                <button className='article-button edit'>Edit</button>
-              </Link>
-              <button
-                className='article-button delete'
-                onClick={() => deleteHandler(id)}
-              >
-                Delete
-              </button>
-            </div>
+            {userInfo &&
+              userInfo.isAdmin(
+                <div className='button-container'>
+                  <Link to={`/blog/${id}/edit`} className='article-link'>
+                    <button className='article-button edit'>Edit</button>
+                  </Link>
+                  <button
+                    className='article-button delete'
+                    onClick={() => deleteHandler(id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             {loadingDelete && <Loader />}
           </main>
         </>
