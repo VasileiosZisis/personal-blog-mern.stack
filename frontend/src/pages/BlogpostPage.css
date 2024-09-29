@@ -47,6 +47,15 @@
   word-wrap: break-word;
 }
 
+.article a {
+  color: var(--black-text);
+  transition: all 0.1s ease-in-out;
+}
+
+.article a:where(:hover, :focus-visible) {
+  color: var(--grey-dark);
+}
+
 .ql-editor p:first-of-type::first-letter {
   font-size: 1.7rem;
   line-height: 1;
