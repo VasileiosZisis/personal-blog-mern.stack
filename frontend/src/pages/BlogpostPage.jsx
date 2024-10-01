@@ -89,7 +89,9 @@ const BlogpostPage = () => {
                   <div
                     className='ql-editor'
                     dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(blogpost.content)
+                      __html: DOMPurify.sanitize(blogpost.content, {
+                        ADD_ATTR: ['target']
+                      })
                     }}
                   ></div>
                 </div>
