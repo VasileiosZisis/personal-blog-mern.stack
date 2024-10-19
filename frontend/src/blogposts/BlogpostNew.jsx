@@ -64,7 +64,6 @@ const BlogpostNew = () => {
     control,
     watch,
     setValue,
-    formState,
     formState: { errors, isSubmitSuccessful }
   } = useForm({
     resolver: joiResolver(schema)
@@ -102,7 +101,7 @@ const BlogpostNew = () => {
     if (formState.isSubmitSuccessful) {
       reset()
     }
-  }, [formState, reset])
+  }, [formState, reset, isSubmitSuccessful])
 
   return (
     <>
