@@ -56,6 +56,7 @@ const BlogpostNew = () => {
   const navigate = useNavigate()
 
   const {
+    formState: { errors, isSubmitSuccessful },
     reset,
     register,
     handleSubmit,
@@ -63,8 +64,7 @@ const BlogpostNew = () => {
     clearErrors,
     control,
     watch,
-    setValue,
-    formState: { errors, isSubmitSuccessful }
+    setValue
   } = useForm({
     resolver: joiResolver(schema)
   })
@@ -98,10 +98,10 @@ const BlogpostNew = () => {
   }
 
   useEffect(() => {
-    if (formState.isSubmitSuccessful) {
+    if (isSubmitSuccessful) {
       reset()
     }
-  }, [formState, reset, isSubmitSuccessful])
+  }, [reset, isSubmitSuccessful])
 
   return (
     <>
