@@ -10,10 +10,11 @@ const SearchBox = () => {
   const schema = Joi.object({
     q: Joi.string()
       .required()
-      .pattern(/^[a-zA-Z]+$/)
+      .pattern(/^[A-Za-z0-9-_ ]+$/)
       .messages({
         'string.empty': 'You need to add a keyword',
-        'string.pattern.base': 'Only letters A-Z are allowed'
+        'string.pattern.base':
+          'Letters, numbers, spaces, dashes and underscores allowed'
       })
   })
 
