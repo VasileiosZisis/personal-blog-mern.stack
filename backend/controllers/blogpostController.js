@@ -7,7 +7,10 @@ const getBlogposts = asyncHandler(async (req, res) => {
   const page = Number(req.query.pageNumber || 1);
 
   const keyword = req.query.keyword
-    ? { title: { $regex: req.query.keyword, $options: 'i' } }
+    ? {
+        title: { $regex: req.query.keyword, $options: 'i' },
+        subtitle: { $regex: req.query.keyword, $options: 'i' },
+      }
     : {};
 
   const total = await Blogpost.countDocuments({ ...keyword });
