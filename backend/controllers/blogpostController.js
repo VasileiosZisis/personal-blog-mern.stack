@@ -8,8 +8,10 @@ const getBlogposts = asyncHandler(async (req, res) => {
 
   const keyword = req.query.keyword
     ? {
-        title: { $regex: req.query.keyword, $options: 'i' },
-        subtitle: { $regex: req.query.keyword, $options: 'i' },
+        $or: [
+          { title: { $regex: req.query.keyword, $options: 'i' } },
+          { subtitle: { $regex: req.query.keyword, $options: 'i' } },
+        ],
       }
     : {};
 
