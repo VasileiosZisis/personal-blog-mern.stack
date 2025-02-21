@@ -31,7 +31,7 @@ const getLatestBlogposts = asyncHandler(async (req, res) => {
 
 const getAnimeBlogposts = asyncHandler(async (req, res) => {
   const limit = 15;
-  const page = Number(req.query.pageNumber || 1);
+  const page = Number(req.query.pageNumberAnim || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({
     category: 'anime',
@@ -44,7 +44,7 @@ const getAnimeBlogposts = asyncHandler(async (req, res) => {
 
 const getBookBlogposts = asyncHandler(async (req, res) => {
   const limit = 15;
-  const page = Number(req.query.pageNumber || 1);
+  const page = Number(req.query.pageNumberBook || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'book' })
     .sort({ createdAt: -1 })
@@ -55,7 +55,7 @@ const getBookBlogposts = asyncHandler(async (req, res) => {
 
 const getGameBlogposts = asyncHandler(async (req, res) => {
   const limit = 15;
-  const page = Number(req.query.pageNumber || 1);
+  const page = Number(req.query.pageNumberGame || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'game' })
     .sort({ createdAt: -1 })
@@ -66,7 +66,7 @@ const getGameBlogposts = asyncHandler(async (req, res) => {
 
 const getTvBlogposts = asyncHandler(async (req, res) => {
   const limit = 15;
-  const page = Number(req.query.pageNumber || 1);
+  const page = Number(req.query.pageNumberTV || 1);
   const total = await Blogpost.countDocuments();
   const blogpostDocs = await Blogpost.find({ category: 'tv' })
     .sort({ createdAt: -1 })

@@ -49,22 +49,22 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className='nav-li'>
-              <NavLink className='navlink' to='/blog/games' onClick={toggle}>
+              <NavLink className='navlink' to='/games' onClick={toggle}>
                 GAMES
               </NavLink>
             </li>
             <li className='nav-li'>
-              <NavLink className='navlink' to='/blog/anime' onClick={toggle}>
+              <NavLink className='navlink' to='/anime' onClick={toggle}>
                 ANIME
               </NavLink>
             </li>
             <li className='nav-li'>
-              <NavLink className='navlink' to='/blog/books' onClick={toggle}>
+              <NavLink className='navlink' to='/books' onClick={toggle}>
                 BOOKS
               </NavLink>
             </li>
             <li className='nav-li'>
-              <NavLink className='navlink' to='/blog/tv' onClick={toggle}>
+              <NavLink className='navlink' to='/tv' onClick={toggle}>
                 TV
               </NavLink>
             </li>
