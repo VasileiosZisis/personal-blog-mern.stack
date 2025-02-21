@@ -8,9 +8,9 @@ import ReactPaginate from 'react-paginate'
 import { Helmet } from 'react-helmet-async'
 
 const TvBlogPage = () => {
-  const { pageNumber } = useParams()
+  const { pageNumberTV } = useParams()
   const { data, isLoading, error } = useGetTvBlogpostsQuery({
-    pageNumber
+    pageNumberTV
   })
 
   let navigate = useNavigate()

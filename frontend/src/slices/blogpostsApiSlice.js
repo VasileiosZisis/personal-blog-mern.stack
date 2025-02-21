@@ -22,40 +22,40 @@ export const blogpostApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
     getAnimeBlogposts: builder.query({
-      query: ({ pageNumber }) => ({
+      query: ({ pageNumberAnim }) => ({
         url: `${BLOGPOSTS_URL}/anime`,
         params: {
-          pageNumber,
+          pageNumberAnim,
         },
       }),
       providesTags: ['Blogposts'],
       keepUnusedDataFor: 5,
     }),
     getBookBlogposts: builder.query({
-      query: ({ pageNumber }) => ({
+      query: ({ pageNumberBook }) => ({
         url: `${BLOGPOSTS_URL}/books`,
         params: {
-          pageNumber,
+          pageNumberBook,
         },
       }),
       providesTags: ['Blogposts'],
       keepUnusedDataFor: 5,
     }),
     getGameBlogposts: builder.query({
-      query: ({ pageNumber }) => ({
+      query: ({ pageNumberGame }) => ({
         url: `${BLOGPOSTS_URL}/games`,
         params: {
-          pageNumber,
+          pageNumberGame,
         },
       }),
       providesTags: ['Blogposts'],
       keepUnusedDataFor: 5,
     }),
     getTvBlogposts: builder.query({
-      query: ({ pageNumber }) => ({
+      query: ({ pageNumberTV }) => ({
         url: `${BLOGPOSTS_URL}/tv`,
         params: {
-          pageNumber,
+          pageNumberTV,
         },
       }),
       providesTags: ['Blogposts'],
