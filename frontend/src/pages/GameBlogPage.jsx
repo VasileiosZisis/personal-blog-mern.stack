@@ -16,7 +16,7 @@ const GameBlogPage = () => {
   let navigate = useNavigate()
 
   const handlePageClick = e => {
-    navigate(`/blog/games/page/${e.selected + 1}`)
+    navigate(`/games/page/${e.selected + 1}`)
   }
 
   return (

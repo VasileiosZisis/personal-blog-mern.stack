@@ -47,23 +47,14 @@ const router = createBrowserRouter(
         element={<BlogPage />}
       />
       <Route path='/blog/:id' element={<BlogpostPage />} />
-      <Route path='/blog/anime/' element={<AnimeBlogPage />} />
-      <Route
-        path='/blog/anime/page/:pageNumberAnim'
-        element={<AnimeBlogPage />}
-      />
-      <Route path='/blog/books/' element={<BookBlogPage />} />
-      <Route
-        path='/blog/books/page/:pageNumberBook'
-        element={<BookBlogPage />}
-      />
-      <Route path='/blog/games/' element={<GameBlogPage />} />
-      <Route
-        path='/blog/games/page/:pageNumberGame'
-        element={<GameBlogPage />}
-      />
-      <Route path='/blog/tv/' element={<TvBlogPage />} />
-      <Route path='/blog/tv/page/:pageNumberTV' element={<TvBlogPage />} />
+      <Route path='/anime/' element={<AnimeBlogPage />} />
+      <Route path='/anime/page/:pageNumberAnim' element={<AnimeBlogPage />} />
+      <Route path='/books/' element={<BookBlogPage />} />
+      <Route path='/books/page/:pageNumberBook' element={<BookBlogPage />} />
+      <Route path='/games/' element={<GameBlogPage />} />
+      <Route path='/games/page/:pageNumberGame' element={<GameBlogPage />} />
+      <Route path='/tv/' element={<TvBlogPage />} />
+      <Route path='/tv/page/:pageNumberTV' element={<TvBlogPage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/hire-me' element={<HirePage />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />

@@ -16,7 +16,7 @@ const TvBlogPage = () => {
   let navigate = useNavigate()
 
   const handlePageClick = e => {
-    navigate(`/blog/tv/page/${e.selected + 1}`)
+    navigate(`/tv/page/${e.selected + 1}`)
   }
 
   return (

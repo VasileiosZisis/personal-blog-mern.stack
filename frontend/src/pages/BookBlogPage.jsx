@@ -16,7 +16,7 @@ const AnimeBlogPage = () => {
   let navigate = useNavigate()
 
   const handlePageClick = e => {
-    navigate(`/blog/books/page/${e.selected + 1}`)
+    navigate(`/books/page/${e.selected + 1}`)
   }
 
   return (
