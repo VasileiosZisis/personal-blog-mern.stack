@@ -100,6 +100,7 @@ const BlogpostNew = () => {
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset()
+      window.localStorage.removeItem('newForm')
     }
   }, [reset, isSubmitSuccessful])
 
