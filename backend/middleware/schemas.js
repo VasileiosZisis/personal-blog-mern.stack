@@ -53,11 +53,16 @@ const extension = (joi) => ({
               'ql-size-huge',
             ],
           },
+          transformTags: {
+            br: () => ({ tagName: 'br', attribs: {}, selfClosing: false }),
+          },
         });
-        const cl = cheerio.load(clean, null, false);
-        if (cl.html() !== value)
+
+        if (clean !== value) {
+          // console.warn(`Unsafe HTML detected: Original: ${value}, Sanitized: ${clean}`);
           return helpers.error('string.escapeHTML', { value });
-        return cl.html();
+        }
+        return clean;
       },
     },
   },
