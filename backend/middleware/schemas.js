@@ -1,6 +1,5 @@
 import BaseJoi from 'joi';
 import sanitizeHtml from 'sanitize-html';
-import * as cheerio from 'cheerio';
 
 const extension = (joi) => ({
   type: 'string',
@@ -54,12 +53,24 @@ const extension = (joi) => ({
             ],
           },
           transformTags: {
-            br: () => ({ tagName: 'br', attribs: {}, selfClosing: false }),
+            br: (tagName, attribs) => {
+              return { tagName: 'br', attribs, selfClosing: false };
+            },
           },
         });
+        const normalizeHtml = (html) =>
+          html
+            .replace(/\s+/g, ' ')
+            .replace(/>\s+</g, '><')
+            .replace(/<br\s*\/>/gi, '<br>')
+            .trim();
 
-        if (clean !== value) {
-          // console.warn(`Unsafe HTML detected: Original: ${value}, Sanitized: ${clean}`);
+        const normalizedValue = normalizeHtml(value);
+        const normalizedClean = normalizeHtml(clean);
+        if (normalizedClean !== normalizedValue) {
+          console.warn(
+            `Unsafe HTML detected: Original: ${value}, Sanitized: ${clean}`
+          );
           return helpers.error('string.escapeHTML', { value });
         }
         return clean;
