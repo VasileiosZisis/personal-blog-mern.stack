@@ -6,8 +6,8 @@
 }
 
 .article-img {
-  max-width: clamp(min(250px), calc(100vw - 10%), max(1000px));
-  max-height: 400px;
+  width: clamp(min(545px), calc(100vw - 10%), max(1000px));
+  max-height: 450px;
   object-fit: cover;
   margin: 1rem auto;
   box-shadow: 9px 9px 4px var(--grey-medium);
