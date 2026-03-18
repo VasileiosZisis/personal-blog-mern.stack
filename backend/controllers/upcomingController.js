@@ -2,6 +2,11 @@ import asyncHandler from '../middleware/asyncHandler.js';
 import Upcoming from '../models/upcoming.js';
 import { cloudinary } from '../config/cloudinary.js';
 
+const getUploadedImage = (file) => ({
+  url: file?.path || file?.secure_url || file?.url,
+  filename: file?.filename || file?.public_id,
+});
+
 const getUpcoming = asyncHandler(async (req, res) => {
   const upcomingDocs = await Upcoming.find({});
   res.json(upcomingDocs);
@@ -9,8 +14,9 @@ const getUpcoming = asyncHandler(async (req, res) => {
 
 const createUpcoming = asyncHandler(async (req, res) => {
   const upcoming = new Upcoming(req.body);
-  upcoming.image.url = req.file.path;
-  upcoming.image.filename = req.file.filename;
+  const uploadedImage = getUploadedImage(req.file);
+  upcoming.image.url = uploadedImage.url;
+  upcoming.image.filename = uploadedImage.filename;
   const createdUpcoming = await upcoming.save();
   if (createdUpcoming) {
     res.status(201).json(createdUpcoming);

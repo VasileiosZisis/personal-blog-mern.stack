@@ -2,6 +2,11 @@ import asyncHandler from '../middleware/asyncHandler.js';
 import Blogpost from '../models/blogpost.js';
 import { cloudinary } from '../config/cloudinary.js';
 
+const getUploadedImage = (file) => ({
+  url: file?.path || file?.secure_url || file?.url,
+  filename: file?.filename || file?.public_id,
+});
+
 const getBlogposts = asyncHandler(async (req, res) => {
   const limit = 15;
   const page = Number(req.query.pageNumber || 1);
@@ -87,8 +92,9 @@ const getBlogpostById = asyncHandler(async (req, res) => {
 
 const createBlogpost = asyncHandler(async (req, res) => {
   const blogpost = new Blogpost(req.body);
-  blogpost.image.url = req.file.path;
-  blogpost.image.filename = req.file.filename;
+  const uploadedImage = getUploadedImage(req.file);
+  blogpost.image.url = uploadedImage.url;
+  blogpost.image.filename = uploadedImage.filename;
   const createdBlogpost = await blogpost.save();
   if (createdBlogpost) {
     res.status(201).json(createdBlogpost);
@@ -104,10 +110,10 @@ const updateBlogpost = asyncHandler(async (req, res) => {
   blogpost.subtitle = req.body.subtitle;
   blogpost.content = req.body.content;
   blogpost.category = req.body.category;
-  blogpost.image - req.body.image;
   if (req.file) {
-    blogpost.image.url = req.file.path;
-    blogpost.image.filename = req.file.filename;
+    const uploadedImage = getUploadedImage(req.file);
+    blogpost.image.url = uploadedImage.url;
+    blogpost.image.filename = uploadedImage.filename;
   }
   const updatedBlogpost = await blogpost.save();
   if (updatedBlogpost) {
