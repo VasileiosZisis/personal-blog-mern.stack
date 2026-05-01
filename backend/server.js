@@ -29,6 +29,8 @@ app.use(
           'blob:',
           'data:',
           'https://res.cloudinary.com/',
+          'https://images.unsplash.com',
+          'https://unsplash.com',
           'www.googletagmanager.com',
         ],
         scriptSrc: ["'unsafe-inline'", "'self'", 'www.googletagmanager.com'],
